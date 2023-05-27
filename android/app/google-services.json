@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "944962283524",
+    "project_id": "spice-8442a",
+    "storage_bucket": "spice-8442a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944962283524:android:e525d5f0990b2a10fe2d51",
+        "android_client_info": {
+          "package_name": "com.tim.east_african_spice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBb1hxolBQDUIXD6Hghwxm6ON8jbHXfx-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

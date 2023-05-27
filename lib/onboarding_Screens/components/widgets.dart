@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 class login_signupButton extends StatelessWidget {
 
   String text;
@@ -94,3 +94,19 @@ class type_of_Textfield extends StatelessWidget {
   }
 }
 //this widget describes the text above the textfield
+
+
+
+InkWell buildGestureDetector(
+    String link,
+    VoidCallback ontap
+    ) { 
+  return InkWell(
+    onTap:ontap,
+    child: SvgPicture.asset (
+      link,
+      width: 26,
+      height: 26,
+    ),
+  );
+}

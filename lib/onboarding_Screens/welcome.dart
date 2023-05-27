@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:east_african_spice/onboarding_Screens/components/widgets.dart';
 import 'package:east_african_spice/onboarding_Screens/login.dart';
-
+import 'package:east_african_spice/onboarding_Screens/signup.dart';
 class Decoration{
   static BoxDecoration deco=BoxDecoration(
     image : DecorationImage(
@@ -49,7 +49,6 @@ class Welcome extends StatelessWidget {
                    }),
 
       SizedBox(height:10 ),
-
                    Row(
                      crossAxisAlignment: CrossAxisAlignment.center,
                      mainAxisAlignment: MainAxisAlignment.center,
@@ -61,12 +60,13 @@ class Welcome extends StatelessWidget {
                            fontSize: 22,
                            fontWeight: FontWeight.bold,
                          ),),
-                     //  SizedBox(width: 5,),
-
-
-                       Outlined_signupButton("Sign up!",(){},)
+                       //  SizedBox(width: 5,),
+                       Outlined_signupButton("Sign up!", () {
+                         Navigator.pushNamed(context, signUP.id);
+                       },)
                      ],
                    ),
+
                    Container(
                      height: 40,
                    ),
