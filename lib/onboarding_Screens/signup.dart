@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:east_african_spice/onboarding_Screens/components/widgets.dart';
-import 'package:firebase_core/firebase_core.dart';
+import"package:east_african_spice/onboarding_Screens/login.dart";
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -131,7 +131,7 @@ class _signUPState extends State<signUP> {
 
                       fillColor: Colors.grey[900]?.withOpacity(0.5),
 
-                      hintText: "Enter your username",
+                      hintText: "Enter your email",
 
                       hintStyle: TextStyle(
 
@@ -193,7 +193,7 @@ class _signUPState extends State<signUP> {
 
                       fillColor: Colors.grey[900]?.withOpacity(0.5),
 
-                      hintText: "Enter your username",
+                      hintText: "Enter a password (8 characters)",
 
                       hintStyle: TextStyle(
 
@@ -255,7 +255,7 @@ class _signUPState extends State<signUP> {
 
                       fillColor: Colors.grey[900]?.withOpacity(0.5),
 
-                      hintText: "Enter your username",
+                      hintText: "Re-enter password",
 
                       hintStyle: TextStyle(
 
@@ -303,7 +303,7 @@ class _signUPState extends State<signUP> {
               ),
               login_signupButton("Sign up",() async{
 
-                if (password==checkpassword){
+                if (password==checkpassword && password.length==8 ){
                   try{
                     final newUser=await _auth.createUserWithEmailAndPassword(email: email, password: password);
                     User? user = newUser.user;
@@ -314,6 +314,11 @@ class _signUPState extends State<signUP> {
                       'username': username,
                     });
 
+                    if (newUser != null){
+                      //navigate to dashboard
+                      print("hello");
+                    }
+
                   }
                   catch(e){print(e);}
                 }
@@ -322,13 +327,15 @@ class _signUPState extends State<signUP> {
                 showDialog(context: context, builder: (BuildContext context){
                     return AlertDialog(
                     title: Text("Error"),
-                    content: Text("Passwords do not match!"),
+                    content: Text("Re-enter password!"),
                     actions: [
                     TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Ok"))
                     ],
                     );
                     }
                 )
+
+
                 );
 
 
@@ -379,7 +386,7 @@ class _signUPState extends State<signUP> {
 
 
                   Outlined_signupButton("Sign in", () {
-                    Navigator.pushNamed(context, signUP.id);
+                    Navigator.pushNamed(context, login.id);
                   },)
                 ],
               ),

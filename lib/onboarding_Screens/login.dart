@@ -31,7 +31,7 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
-
+  final FirebaseAuth  _auth= FirebaseAuth.instance;
   bool checkBox = false;
   bool obscureText = true;
   late String email;
@@ -239,9 +239,37 @@ class _loginState extends State<login> {
                   ),
                 ),
 
-                login_signupButton("Login", () {
+                login_signupButton("Login", () async{
+
+                  try{
+                    final UserCredential? user= await _auth.signInWithEmailAndPassword(email: email, password: password);
+
+                    User? signedUser=user?.user;
+                    if (signedUser!= null){
+                      print("hello");
+                      //navigate
+                    }
+
+                  }on FirebaseAuthException
+                  catch(e)
+                  {
+                  if(e.code=='user-not-found'||e.code=="wrong-password"){
+                    showDialog(context: context, builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text("Error"),
+                        content: Text("Wrong credentials!"),
+                        actions: [
+                          TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Ok"))
+                        ],
+                      );
+                    }
+                    );
+                  }
 
 
+
+                    print(e);
+                  }
 
 
                 }),
