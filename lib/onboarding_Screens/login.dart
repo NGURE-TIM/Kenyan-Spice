@@ -2,9 +2,10 @@ import 'package:east_african_spice/onboarding_Screens/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:east_african_spice/onboarding_Screens/components/widgets.dart';
-
-import 'package:firebase_core/firebase_core.dart';
+import 'package:twitter_login/twitter_login.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class Decoration{
   static BoxDecoration deco=BoxDecoration(
@@ -285,17 +286,103 @@ class _loginState extends State<login> {
                     children: [
 
                       buildGestureDetector(
-                          "images/google-icon-svgrepo-com.svg", () {}),
+                          "images/google-icon-svgrepo-com.svg", () async{
+
+                        try{
+                          final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+                          final GoogleSignInAuthentication? googleAuth= await googleUser?.authentication;
+                          final AuthCredential credential = GoogleAuthProvider.credential(
+                              accessToken: googleAuth?.accessToken,
+                              idToken:googleAuth?.idToken
+                          );
+                          final UserCredential userCredential = await _auth.signInWithCredential(credential);
+                          final User? user= userCredential.user;
+
+                          if(
+                          user!=null
+                          ){
+
+                            print("hello") ;
+
+                          }
+
+                        }
+
+                        catch(e){
+
+                          print("Exception: $e");
+                        }
+
+
+                      }),
+
+
                       Container(
                         width: 22,
                       ),
                       buildGestureDetector(
-                          "images/twitter-svgrepo-com (1).svg", () {}),
+                          "images/twitter-svgrepo-com (1).svg", () async{
+try{
+  final twitterLogin = new TwitterLogin(
+      apiKey: '<your consumer key>',
+      apiSecretKey:' <your consumer secret>',
+      redirectURI: '<your_scheme>://'
+  );
+  final authResult = await twitterLogin.login();
+  final twitterAuthCredential = TwitterAuthProvider.credential(
+    accessToken: authResult.authToken!,
+    secret: authResult.authTokenSecret!,
+  );
+  final UserCredential userCredential =await FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+  User? user=userCredential.user;
+  if(user!=null)
+  {
+    print("hello");
+  }
+}
+                        catch(e){
+
+                        print("Exception thrown $e");
+
+                        }
+
+                      }),
                       Container(
                         width: 22,
                       ),
                       buildGestureDetector(
-                          "images/facebook-svgrepo-com.svg", () {}),
+                          "images/facebook-svgrepo-com.svg", () async{
+
+                        try{
+                          final LoginResult loginResult=await FacebookAuth.instance.login();
+
+                          final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+                          final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+                          User? user=userCredential.user;
+
+                          if(user!=null)
+                          {
+                            print("hello");
+                          }
+
+                        }
+                        catch(e){
+
+                          print("Exception thrown $e");
+
+                        }
+
+
+
+
+
+
+
+
+
+
+
+                      }),
                     ],
                   ),
                 ),

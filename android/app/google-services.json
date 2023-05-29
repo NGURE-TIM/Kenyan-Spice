@@ -12,7 +12,12 @@
           "package_name": "com.tim.east_african_spice"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "944962283524-oh1iejbedf0fvfsape8og19cklsc10f3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBb1hxolBQDUIXD6Hghwxm6ON8jbHXfx-4"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944962283524-dlm4b4eco06lht0dvob6nh6v0p0rf9tn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
