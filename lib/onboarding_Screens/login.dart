@@ -5,6 +5,7 @@ import 'package:east_african_spice/onboarding_Screens/components/widgets.dart';
 import 'package:twitter_login/twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:east_african_spice/Dashboard/dashboard.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class Decoration{
@@ -242,11 +243,13 @@ class _loginState extends State<login> {
 
                 login_signupButton("Login", () async{
 
+
                   try{
                     final UserCredential? user= await _auth.signInWithEmailAndPassword(email: email, password: password);
 
                     User? signedUser=user?.user;
                     if (signedUser!= null){
+                      Navigator.pushNamed(context, dash.id);
                       print("hello");
                       //navigate
                     }
@@ -266,7 +269,6 @@ class _loginState extends State<login> {
                     }
                     );
                   }
-
 
 
                     print(e);
@@ -301,7 +303,7 @@ class _loginState extends State<login> {
                           if(
                           user!=null
                           ){
-
+                            Navigator.pushNamed(context, dash.id);
                             print("hello") ;
 
                           }
@@ -337,6 +339,7 @@ try{
   User? user=userCredential.user;
   if(user!=null)
   {
+    Navigator.pushNamed(context, dash.id);
     print("hello");
   }
 }
@@ -362,6 +365,8 @@ try{
 
                           if(user!=null)
                           {
+
+                            Navigator.pushNamed(context, dash.id);
                             print("hello");
                           }
 
@@ -416,15 +421,10 @@ try{
             ),
           ),
 
-        )
+        ),
     );
   }
 }
-
-
-
-
-
 
 
 
