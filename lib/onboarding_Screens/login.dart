@@ -354,8 +354,11 @@ try{
                         width: 22,
                       ),
                       buildGestureDetector(
-                          "images/facebook-svgrepo-com.svg", () async{
+                          "images/facebook-svgrepo-com.svg", () {
 
+
+                        Navigator.pushNamed(context, dash.id);
+/*
                         try{
                           final LoginResult loginResult=await FacebookAuth.instance.login();
 
@@ -378,7 +381,7 @@ try{
                         }
 
 
-
+*/
 
 
 

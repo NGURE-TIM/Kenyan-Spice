@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:east_african_spice/onboarding_Screens/components/widgets.dart';
 import"package:east_african_spice/onboarding_Screens/login.dart";
