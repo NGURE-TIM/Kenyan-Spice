@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
-
+import 'package:animated_emoji/animated_emoji.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
 
 class dash extends StatefulWidget {
@@ -12,12 +13,43 @@ static const String id ="/dash";
 }
 
 class _dashState extends State<dash> {
+  int _selectedIndex=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 backgroundColor: Colors.white,
 appBar:buildAppBar(),
       body: buildSingleChildScrollView(),
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _selectedIndex,
+        onItemSelected: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        items: [
+          BottomNavyBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+            activeColor: Colors.blue,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.search),
+            title: Text('Search'),
+            activeColor: Colors.green,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.favorite),
+            title: Text('Favorites'),
+            activeColor: Colors.red,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Profile'),
+            activeColor: Colors.yellow,
+          ),
+        ],
+      ),
     );
   }
 
@@ -93,20 +125,78 @@ crossAxisAlignment: CrossAxisAlignment.start,
           const SizedBox(
             height: 10,
           ),
-         const Text(
+         Row(
+           children: [
+             const Text(
+               "Popular Recipes",
+               style: TextStyle(
+                 fontSize: 25,
+                 fontWeight: FontWeight.w700,
+                 color: Colors.black,
+               ),
+             ),
+             const SizedBox(
+               height: 5,
+             ),
+             const AnimatedEmoji(
+               AnimatedEmojis.fire,
+               size: 25,
+             ),
+           ],
+
+         ),
+          const SizedBox(
+            height: 10,
+          ),
+
+Container(
+  height:150,
+    child: buildPopular()),
+SizedBox(
+  height: 10,
+),
+          const Text(
             "Recommended Recipes",
             style: TextStyle(
-              fontSize: 30,
+              fontSize: 25,
               fontWeight: FontWeight.w700,
               color: Colors.black,
             ),
           ),
 
 
+
+
+
+
         ],
       ),
     ),
   );
+
+
+
+
+
+
+
+
+
+
+
+  SingleChildScrollView buildPopular() {
+    return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+      child:
+      Row(
+        children: [
+
+
+        ],
+      )
+
+);
+  }
 
 
 

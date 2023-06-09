@@ -60,10 +60,10 @@ class _signUPState extends State<signUP> {
                 width: 300,
                 height: 40,
                 child: TextField(
-                  style: TextStyle(
+                  style: const TextStyle(
                     color:Colors.white,
                   ),
-                  cursorColor: Color(yellowTheme),
+                  cursorColor: const Color(yellowTheme),
                   textAlign: TextAlign.center,
                   onChanged: (value){
                     username=value;
@@ -83,18 +83,18 @@ class _signUPState extends State<signUP> {
 
                       ),
 
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 20.0),
 
                       border:
 
-                      OutlineInputBorder(
+                      const OutlineInputBorder(
 
                         borderRadius: BorderRadius.all(Radius.circular(32.0)),
 
                       ),
 
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
 
                         borderSide: BorderSide(
                             color: Color(yellowTheme), width: 1.0),
@@ -103,7 +103,7 @@ class _signUPState extends State<signUP> {
 
                       ),
 
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
 
                         borderSide: BorderSide(
                             color: Colors.white, width: 2.0),
@@ -122,7 +122,7 @@ class _signUPState extends State<signUP> {
                 width: 300,
                 height: 40,
                 child: TextField(
-                    style: TextStyle(
+                    style: const TextStyle(
                       color:Colors.white,
                     ),
                     cursorColor: Color(yellowTheme),
@@ -145,12 +145,12 @@ class _signUPState extends State<signUP> {
 
                       ),
 
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 20.0),
 
                       border:
 
-                      OutlineInputBorder(
+                      const OutlineInputBorder(
 
                         borderRadius: BorderRadius.all(Radius.circular(32.0)),
 
@@ -184,7 +184,7 @@ class _signUPState extends State<signUP> {
                 width: 300,
                 height: 40,
                 child: TextField(
-                    style: TextStyle(
+                    style: const TextStyle(
                       color:Colors.white,
                     ),
                     cursorColor: Color(yellowTheme),
@@ -246,7 +246,7 @@ class _signUPState extends State<signUP> {
                 width: 300,
                 height: 40,
                 child: TextField(
-                    style: TextStyle(
+                    style: const TextStyle(
                       color:Colors.white,
                     ),
                     cursorColor: Color(yellowTheme),
