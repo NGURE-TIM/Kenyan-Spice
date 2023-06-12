@@ -5,7 +5,7 @@ import 'package:east_african_spice/onboarding_Screens/components/widgets.dart';
 import 'package:twitter_login/twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:east_african_spice/Dashboard/dashboard.dart';
+import 'package:east_african_spice/Dashboard/dashboard_home.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class Decoration{

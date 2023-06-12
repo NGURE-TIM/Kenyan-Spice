@@ -13,43 +13,16 @@ static const String id ="/dash";
 }
 
 class _dashState extends State<dash> {
-  int _selectedIndex=0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 backgroundColor: Colors.white,
 appBar:buildAppBar(),
       body: buildSingleChildScrollView(),
-      bottomNavigationBar: BottomNavyBar(
-        selectedIndex: _selectedIndex,
-        onItemSelected: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        items: [
-          BottomNavyBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-            activeColor: Colors.blue,
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Search'),
-            activeColor: Colors.green,
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.favorite),
-            title: Text('Favorites'),
-            activeColor: Colors.red,
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
-            activeColor: Colors.yellow,
-          ),
-        ],
-      ),
+      bottomNavigationBar: Buildbottom(),
+
+
     );
   }
 
@@ -322,4 +295,51 @@ onPressed: null,
     ),
 
   );
+}
+
+
+class Buildbottom extends StatefulWidget {
+
+
+  @override
+  State<Buildbottom> createState() => _BuildbottomState();
+}
+
+class _BuildbottomState extends State<Buildbottom> {
+
+  int selectedIndex=0;
+
+  @override
+  Widget build(BuildContext context) {
+    return  BottomNavyBar(
+      selectedIndex: selectedIndex,
+      onItemSelected: (index) {
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      items: [
+        BottomNavyBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Home'),
+          activeColor: Colors.blue,
+        ),
+        BottomNavyBarItem(
+          icon: Icon(Icons.search),
+          title: Text('Discover'),
+          activeColor: Colors.green,
+        ),
+        BottomNavyBarItem(
+          icon: Icon(Icons.favorite),
+          title: Text('Favorites'),
+          activeColor: Colors.red,
+        ),
+        BottomNavyBarItem(
+          icon: Icon(Icons.person),
+          title: Text('Profile'),
+          activeColor: Colors.yellow,
+        ),
+      ],
+    );
+  }
 }

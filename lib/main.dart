@@ -1,10 +1,10 @@
-import 'package:east_african_spice/Dashboard/dashboard.dart';
+import 'package:east_african_spice/Dashboard/dashboard_home.dart';
 import 'package:east_african_spice/onboarding_Screens/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/welcome.dart';
 import"package:east_african_spice/onboarding_Screens/login.dart";
-import 'package:east_african_spice/Dashboard/dashboard.dart';
+import 'package:east_african_spice/Dashboard/dashboard_home.dart';
 
 
 void main() async{
