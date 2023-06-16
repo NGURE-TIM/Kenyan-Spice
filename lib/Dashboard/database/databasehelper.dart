@@ -1,70 +1,16 @@
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
+import 'dart:async';
+import 'package:floor/floor.dart';
+import 'package:sqflite/sqflite.dart' as sqflite;
+import 'package:floor/floor.dart';
 
-class DatabaseHelper {
-  static DatabaseHelper? _instance;
-  factory DatabaseHelper() {
-    if (_instance == null) {
-      _instance = DatabaseHelper._();
-    }
-    return _instance!;
-  }
+import 'package:east_african_spice/Dashboard/database/database_model/entities.dart';
+import'package:east_african_spice/Dashboard/database/database_model/dao.dart';
 
-  static Database? _database;
+part 'database.g.dart';
+ // the generated code will be there
 
-  Future<Database?> get database async {
-    if (_database != null) {
-      return _database;
-    }
-    _database = await initDatabase();
-    return _database;
-  }
-
-  DatabaseHelper._();
-
-  Future<Database?> initDatabase() async {
-    String databasesPath = await getDatabasesPath();
-    String databasePath = join(databasesPath, 'recipes.db');
-    bool databaseExists = await checkIfDatabaseExists(databasePath);
-
-    if (!databaseExists) {
-      await copyDatabaseFromAssets(databasePath);
-    }
-
-    return await openDatabase(databasePath);
-  }
-
-  Future<bool> checkIfDatabaseExists(String databasePath) async {
-    return databaseFactory.databaseExists(databasePath);
-  }
-
-  Future<void> copyDatabaseFromAssets(String databasePath) async {
-    var documentsDirectory = await getApplicationDocumentsDirectory();
-    String destPath = join(documentsDirectory.path, 'recipes.db');
-
-    ByteData? databaseByteData;
-    try {
-      databaseByteData = await rootBundle.load('database_assests/recipes.db');
-    } catch (e) {
-      throw Exception('Failed to load prepopulated database file: $e');
-    }
-
-    try {
-      final bytes = databaseByteData!.buffer.asUint8List();
-      await File(destPath).writeAsBytes(bytes, flush: true);
-    } catch (e) {
-      throw Exception('Failed to write prepopulated database to path: $e');
-    }
-  }
+@Database(version: 1, entities: [Recipe, Ingredients])
+abstract class AppDatabase extends FloorDatabase {
+  RecipeDao get recipeDao;
+  IngredientsDao get ingredientsDao;
 }
-
-
-
-
-
-
-
-
