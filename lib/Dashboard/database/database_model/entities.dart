@@ -1,3 +1,7 @@
+
+
+/*
+
 import 'package:floor/floor.dart';
 
 
@@ -9,17 +13,17 @@ class Recipe{
 
   final String image_path;
   final String title;
-  final String short_description;
+
   final String meal_type;
   Recipe(
-      {
-        required this.id,
-        required this.image_path,
-        required this.title,
-        required this.short_description,
-        required this.meal_type,
 
-      });
+         this.id,
+         this.image_path,
+         this.title,
+
+         this.meal_type,
+
+      );
 }
 
 @Entity(
@@ -50,7 +54,7 @@ required this.item,
 
 }
 
-
+*/
 
 
 

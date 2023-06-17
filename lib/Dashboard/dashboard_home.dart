@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:animated_emoji/animated_emoji.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class dash extends StatefulWidget {
 
@@ -14,6 +14,9 @@ static const String id ="/dash";
 
 class _dashState extends State<dash> {
 
+
+  final CollectionReference recipes =
+  FirebaseFirestore.instance.collection('recipe');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +94,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
                 onPressed: null, icon: Icon(Icons.filter_alt ),
               iconSize: 30,
               ),
-              
+
             ],
           ),
 
@@ -149,44 +152,12 @@ SizedBox(
 
 
 
-
-
-
-
-
-
-
-
-  SingleChildScrollView buildPopular() {
-    return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-      child:
-      Row(
-        children: [
-
-
-        ],
-      )
-
-);
+  FutureBuilder<QuerySnapshot> buildPopular() {
+    return FutureBuilder<QuerySnapshot>(
+        future:recipes.get(),
+        builder:(BuildContext context,AsyncSnapshot<QuerySnapshot>snapshot)
+    )
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   Container buildSearchbar() {
@@ -296,6 +267,33 @@ onPressed: null,
 
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class Buildbottom extends StatefulWidget {

@@ -1,3 +1,5 @@
+
+/*
 import 'package:floor/floor.dart';
 import 'package:east_african_spice/Dashboard/database/database_model/entities.dart';
 
@@ -19,3 +21,4 @@ abstract class IngredientsDao {
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertIngredients(Ingredients ingredients);
 }
+*/
