@@ -3,6 +3,10 @@ import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:animated_emoji/animated_emoji.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
+
+RecipeList list=  RecipeList();
+
 
 class dash extends StatefulWidget {
 
@@ -13,7 +17,6 @@ static const String id ="/dash";
 }
 
 class _dashState extends State<dash> {
-
 
   final CollectionReference recipes =
   FirebaseFirestore.instance.collection('recipe');
@@ -131,14 +134,34 @@ Container(
 SizedBox(
   height: 10,
 ),
-          const Text(
-            "Recommended Recipes",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w700,
-              color: Colors.black,
-            ),
-          ),
+          
+          FutureBuilder(
+              future: list.getfirstrecipe(),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot)
+              {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  String? title = snapshot.data;
+                  return  Text(
+                            title!,
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                    ),
+                  );
+                } else {
+                  return Text('No recipe found');
+                }
+              },
+
+
+
+
+          )
 
 
 
@@ -152,11 +175,16 @@ SizedBox(
 
 
 
-  FutureBuilder<QuerySnapshot> buildPopular() {
-    return FutureBuilder<QuerySnapshot>(
-        future:recipes.get(),
-        builder:(BuildContext context,AsyncSnapshot<QuerySnapshot>snapshot)
-    )
+  SingleChildScrollView buildPopular() {
+    return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+      child:
+      Row(
+        children: [
+        ],
+      )
+
+);
   }
 
 
