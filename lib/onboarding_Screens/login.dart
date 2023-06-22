@@ -7,6 +7,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:east_african_spice/Dashboard/dashboard_home.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
+
+RecipeList list=  RecipeList();
+
 
 class Decoration{
   static BoxDecoration deco=BoxDecoration(
@@ -155,7 +159,9 @@ class _loginState extends State<login> {
                               obscureText ? Icons.visibility_off : Icons
                                   .visibility
                           ),
-                          onPressed: () {
+                          onPressed: () async {
+                            print(await list.getfirstrecipe());
+
                             setState(() {
                               obscureText = !obscureText;
                             });
