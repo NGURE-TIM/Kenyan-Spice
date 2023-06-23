@@ -34,25 +34,33 @@ List getRecipes=[];
     QuerySnapshot snapshot = await collection.get();
 
     for (QueryDocumentSnapshot snap in snapshot.docs) {
-      print(snap.data());
+      snap.data()==null?print("error error"): print(snap.data());
       Recipe first = Recipe.fromMap(snap.data()as Map<String,dynamic>);
       print(first.image_path);
+      print(first.title);
+      print(first.id);
+      print(first.meal_type);
+
       getRecipes.add(first);
-      for(Recipe recipe in getRecipes){
-        print(recipe);
-      }
+      print("Number of recipes is now: ${getRecipes.length}");
     }
 
     }
 
     Future<String> getfirstrecipe ( )async{
-    if (getRecipes.length==0)
+    if (getRecipes.isEmpty)
       {
         await getRecipedocument();
 
       }
 
-    String title=  getRecipes.length!=0?getRecipes[0].title:'empty';
+for(Recipe recipe in getRecipes)
+  {
+    recipe.image_path==null?print("eggs"):print("hey");
+  }
+
+String title=getRecipes[0].image_path;
+
     return title;
     }
 

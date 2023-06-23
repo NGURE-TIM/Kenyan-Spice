@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "944962283524-26961llj058u1nvngdh3sb22lillg25t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tim.east_african_spice",
+            "certificate_hash": "b6d73991575a24f8f2192bc07d3c7daa5efeb79c"
+          }
+        },
+        {
           "client_id": "944962283524-oh1iejbedf0fvfsape8og19cklsc10f3.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -294,35 +294,34 @@ class _loginState extends State<login> {
                     children: [
 
                       buildGestureDetector(
-                          "images/google-icon-svgrepo-com.svg", () async{
-
-                        try{
+                          "images/google-icon-svgrepo-com.svg", () async {
+                        Future<UserCredential> signInWithGoogle() async {
+                          // Trigger the authentication flow
                           final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-                          final GoogleSignInAuthentication? googleAuth= await googleUser?.authentication;
-                          final AuthCredential credential = GoogleAuthProvider.credential(
-                              accessToken: googleAuth?.accessToken,
-                              idToken:googleAuth?.idToken
+
+                          // Obtain the auth details from the request
+                          final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+                          // Create a new credential
+                          final credential = GoogleAuthProvider.credential(
+                            accessToken: googleAuth?.accessToken,
+                            idToken: googleAuth?.idToken,
                           );
-                          final UserCredential userCredential = await _auth.signInWithCredential(credential);
-                          final User? user= userCredential.user;
 
-                          if(
-                          user!=null
-                          ){
-                            Navigator.pushNamed(context, dash.id);
-                            print("hello") ;
-
-                          }
+                          // Once signed in, return the UserCredential
+                          return await FirebaseAuth.instance.signInWithCredential(credential);
 
                         }
 
-                        catch(e){
+                        signInWithGoogle() .then ((userCredential) {
+                          Navigator.pushNamed(context, dash.id);
+                          print("Sign-in successful");
+                        }).catchError((error) {
+                          print("Sign-in failed: $error");
+                        });
 
-                          print("Exception: $e");
-                        }
 
-
-                      }),
+               }),
 
 
                       Container(
@@ -437,3 +436,27 @@ try{
 
 
 
+/*  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+                          final GoogleSignInAuthentication? googleAuth= await googleUser?.authentication;
+                          final AuthCredential credential = GoogleAuthProvider.credential(
+                              accessToken: googleAuth?.accessToken,
+                              idToken:googleAuth?.idToken
+                          );
+                          final UserCredential userCredential = await _auth.signInWithCredential(credential);
+                          final User? user= userCredential.user;
+
+                          if(
+                          user!=null
+                          ){
+                            Navigator.pushNamed(context, dash.id);
+                            print("hello") ;
+
+                          }
+
+                        }
+
+                        catch(e){
+
+                          print("Exception: $e");
+                        }
+*/
