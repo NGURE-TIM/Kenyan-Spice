@@ -360,38 +360,18 @@ try{
                       ),
                       buildGestureDetector(
                           "images/facebook-svgrepo-com.svg", () {
+     Future<UserCredential> signInWithFacebook() async{
+       final LoginResult loginResult= await FacebookAuth.instance.login();
+       final OAuthCredential facebookAuthCredential= FacebookAuthProvider.credential(loginResult.accessToken!.token);
+       return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+     } 
 
+     signInWithFacebook().then((UserCredential){
+       Navigator.pushNamed(context, dash.id);
 
-                        Navigator.pushNamed(context, dash.id);
-/*
-                        try{
-                          final LoginResult loginResult=await FacebookAuth.instance.login();
-
-                          final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-                          final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-                          User? user=userCredential.user;
-
-                          if(user!=null)
-                          {
-
-                            Navigator.pushNamed(context, dash.id);
-                            print("hello");
-                          }
-
-                        }
-                        catch(e){
-
-                          print("Exception thrown $e");
-
-                        }
-
-
-*/
-
-
-
-
-
+     }).catchError((error) {
+       print("Sign-in failed: $error");
+     });
 
 
 
@@ -434,29 +414,3 @@ try{
   }
 }
 
-
-
-/*  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-                          final GoogleSignInAuthentication? googleAuth= await googleUser?.authentication;
-                          final AuthCredential credential = GoogleAuthProvider.credential(
-                              accessToken: googleAuth?.accessToken,
-                              idToken:googleAuth?.idToken
-                          );
-                          final UserCredential userCredential = await _auth.signInWithCredential(credential);
-                          final User? user= userCredential.user;
-
-                          if(
-                          user!=null
-                          ){
-                            Navigator.pushNamed(context, dash.id);
-                            print("hello") ;
-
-                          }
-
-                        }
-
-                        catch(e){
-
-                          print("Exception: $e");
-                        }
-*/
