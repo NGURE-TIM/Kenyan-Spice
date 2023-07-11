@@ -1,9 +1,11 @@
+import 'package:animated_emoji/animated_emoji.dart';
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
-import 'package:animated_emoji/animated_emoji.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
+import 'dashboard_Components.dart';
+import 'dashboardConsts.dart';
 
 RecipeList list=  RecipeList();
 
@@ -84,9 +86,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
 
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          verticalSPacing,
           Row(
             children: [
               buildSearchbar(),
@@ -101,72 +101,19 @@ crossAxisAlignment: CrossAxisAlignment.start,
             ],
           ),
 
-          const SizedBox(
-            height: 10,
-          ),
-         Row(
-           children: [
-             const Text(
-               "Popular Recipes",
-               style: TextStyle(
-                 fontSize: 25,
-                 fontWeight: FontWeight.w700,
-                 color: Colors.black,
-               ),
-             ),
-             const SizedBox(
-               height: 5,
-             ),
-             const AnimatedEmoji(
-               AnimatedEmojis.fire,
-               size: 25,
-             ),
-           ],
+          verticalSPacing,
+          buildRow("Popular Recipes",AnimatedEmojis.fire ),
+          verticalSPacing,
 
-         ),
-          const SizedBox(
-            height: 10,
-          ),
-
-Container(
+          Container(
   height:150,
-    child: buildPopular()),
-SizedBox(
-  height: 10,
-),
-          
-          FutureBuilder(
-              future: list.getfirstrecipe(),
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot)
-              {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else if (snapshot.hasData) {
-                  String? title = snapshot.data;
-                  return  Text(
-                            title!,
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  );
-                } else {
-                  return Text('No recipe found');
-                }
-              },
-
-
-
-
-          )
-
-
-
-
-
+    child:  buildPopularandVegan()),
+          verticalSPacing ,
+          buildRow("Vegan options",AnimatedEmojis.plant ),
+          verticalSPacing ,
+          Container(
+              height:150,
+              child:  buildPopularandVegan()),
 
         ],
       ),
@@ -175,17 +122,7 @@ SizedBox(
 
 
 
-  SingleChildScrollView buildPopular() {
-    return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-      child:
-      Row(
-        children: [
-        ],
-      )
 
-);
-  }
 
 
   Container buildSearchbar() {
@@ -324,6 +261,8 @@ onPressed: null,
 
 
 
+
+
 class Buildbottom extends StatefulWidget {
 
 
@@ -369,3 +308,159 @@ class _BuildbottomState extends State<Buildbottom> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+          FutureBuilder(
+              future: list.getfirstrecipe(),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot)
+              {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  String? title = snapshot.data;
+                  return  Text(
+                            title!,
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                    ),
+                  );
+                } else {
+                  return Text('No recipe found');
+                }
+              },
+
+
+
+
+          )
+
+
+
+*/

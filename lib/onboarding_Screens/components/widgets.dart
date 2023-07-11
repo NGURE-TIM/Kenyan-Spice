@@ -22,7 +22,7 @@ class login_signupButton extends StatelessWidget {
         backgroundColor: Color(yellowTheme), // Set the background color of the button using a hex code
         foregroundColor:(Colors.black), // Set the text color of the button
       ),
-      child: Text(text, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+      child: Text(text, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -49,7 +49,7 @@ class Outlined_signupButton extends StatelessWidget {
         text,
         style: TextStyle(
           color:Color(yellowTheme),
-          fontSize: 15,
+          fontSize: 10,
           fontWeight: FontWeight.bold,
         ),),
 

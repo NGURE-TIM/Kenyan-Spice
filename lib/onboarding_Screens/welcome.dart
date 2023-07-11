@@ -49,22 +49,24 @@ class Welcome extends StatelessWidget {
                    }),
 
       SizedBox(height:10 ),
-                   Row(
-                     crossAxisAlignment: CrossAxisAlignment.center,
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: [
-                       const Text(
-                         "Don't have an account? ",
-                         style: TextStyle(
-                           color: Colors.white,
-                           fontSize: 22,
-                           fontWeight: FontWeight.bold,
-                         ),),
-                       //  SizedBox(width: 5,),
-                       Outlined_signupButton("Sign up!", () {
-                         Navigator.pushNamed(context, signUP.id);
-                       },)
-                     ],
+                   Expanded(
+                     child: Row(
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         const Text(
+                           "Don't have an account? ",
+                           style: TextStyle(
+                             color: Colors.white,
+                             fontSize: 10,
+                             fontWeight: FontWeight.bold,
+                           ),),
+                         //  SizedBox(width: 5,),
+                         Outlined_signupButton("Sign up!", () {
+                           Navigator.pushNamed(context, signUP.id);
+                         },)
+                       ],
+                     ),
                    ),
 
                    Container(
