@@ -1,11 +1,13 @@
 import 'package:animated_emoji/animated_emoji.dart';
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import "bottomNavBar.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
 import 'dashboard_Components.dart';
 import 'dashboardConsts.dart';
+import 'articles.dart';
+import 'categories.dart';
 
 RecipeList list=  RecipeList();
 
@@ -19,16 +21,24 @@ static const String id ="/dash";
 }
 
 class _dashState extends State<dash> {
-
+  int selectedIndex=0;
+  PageController? pageController;
   final CollectionReference recipes =
   FirebaseFirestore.instance.collection('recipe');
+  @override
+  void initState(){
+    super.initState();
+    pageController=PageController();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 backgroundColor: Colors.white,
 appBar:buildAppBar(),
       body: buildSingleChildScrollView(),
-      bottomNavigationBar: Buildbottom(),
+      bottomNavigationBar: Buildbottom(pageController! , selectedIndex),
 
 
     );
@@ -36,13 +46,15 @@ appBar:buildAppBar(),
 
 
   Widget buildSingleChildScrollView() => SingleChildScrollView(
+
+
     child: Padding(
       padding: const EdgeInsets.only(left: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
 crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         const SizedBox(height: 10),
+        verticalSpacing,
           const   Text(
             "Hello, xxxxxx!",
             style: TextStyle(
@@ -51,7 +63,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
               color: Colors.grey,
             ),
           ),
-        const  SizedBox(height: 10),
+          verticalSpacing,
           const Text(
             "What would you like,",
             style: TextStyle(
@@ -60,7 +72,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
               color: Colors.black,
             ),
           ),
-          const  SizedBox(height: 5),
+          verticalSpacing,
           const Row(
             children: [
               Text(
@@ -86,7 +98,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
 
             ],
           ),
-          verticalSPacing,
+          verticalSpacing,
           Row(
             children: [
               buildSearchbar(),
@@ -101,20 +113,36 @@ crossAxisAlignment: CrossAxisAlignment.start,
             ],
           ),
 
-          verticalSPacing,
+          verticalSpacing,
           buildRow("Popular Recipes",AnimatedEmojis.fire ),
-          verticalSPacing,
+          verticalSpacing,
 
           Container(
   height:150,
     child:  buildPopularandVegan()),
-          verticalSPacing ,
+          verticalSpacing ,
           buildRow("Vegan options",AnimatedEmojis.plant ),
-          verticalSPacing ,
+          verticalSpacing ,
           Container(
               height:150,
               child:  buildPopularandVegan()),
-
+          Container(
+            height: 200,
+            child: PageView(
+                physics: BouncingScrollPhysics(),
+              controller: pageController,
+              onPageChanged:  (int index){
+                setState(() {
+                  selectedIndex=index;
+                });
+              }        ,
+              children: [
+                dash(),
+                articles(),
+                category()
+              ],
+            ),
+          )
         ],
       ),
     ),
@@ -263,51 +291,6 @@ onPressed: null,
 
 
 
-class Buildbottom extends StatefulWidget {
-
-
-  @override
-  State<Buildbottom> createState() => _BuildbottomState();
-}
-
-class _BuildbottomState extends State<Buildbottom> {
-
-  int selectedIndex=0;
-
-  @override
-  Widget build(BuildContext context) {
-    return  BottomNavyBar(
-      selectedIndex: selectedIndex,
-      onItemSelected: (index) {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-      items: [
-        BottomNavyBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-          activeColor: Colors.blue,
-        ),
-        BottomNavyBarItem(
-          icon: Icon(Icons.search),
-          title: Text('Discover'),
-          activeColor: Colors.green,
-        ),
-        BottomNavyBarItem(
-          icon: Icon(Icons.favorite),
-          title: Text('Favorites'),
-          activeColor: Colors.red,
-        ),
-        BottomNavyBarItem(
-          icon: Icon(Icons.person),
-          title: Text('Profile'),
-          activeColor: Colors.yellow,
-        ),
-      ],
-    );
-  }
-}
 
 
 

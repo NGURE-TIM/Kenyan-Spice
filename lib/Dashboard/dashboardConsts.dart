@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
 
-const verticalSPacing =SizedBox(height: 10);
+const verticalSpacing =SizedBox(height: 10);
 
 
