@@ -32,16 +32,30 @@ class buildRow extends StatelessWidget {
 }
 
 
-// The below builds a horizontal scroll view section
+/*FutureBuilder(
+              future: list.getfirstrecipe(),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot)
+              {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  String? title = snapshot.data;
+                  return  Text(
+                            title!,
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                    ),
+                  );
+                } else {
+                  return Text('No recipe found');
+                }
+              },
 
-SingleChildScrollView buildPopularandVegan() {
-  return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child:
-      Row(
-        children: [
-        ],
-      )
 
-  );
-}
+
+
+          )*/
