@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
-
+import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 class Buildbottom extends StatefulWidget {
   late PageController pageController;
   int selectedIndex;
@@ -16,6 +16,7 @@ class _BuildbottomState extends State<Buildbottom> {
   @override
   Widget build(BuildContext context) {
     return  WaterDropNavBar(
+      waterDropColor: Color(yellowTheme),
       backgroundColor: Colors.white70,
       onItemSelected: (int index) {
         setState(() {
