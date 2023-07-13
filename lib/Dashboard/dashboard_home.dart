@@ -49,7 +49,7 @@ class _dashState extends State<dash> {
           category()
         ],
       ),
-      ,
+      bottomNavigationBar: Buildbottom(pageController! , selectedIndex),
     );
   }
 }

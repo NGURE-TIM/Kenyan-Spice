@@ -19,7 +19,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-  int selectedIndex=0;
+ 
   final CollectionReference recipes =
   FirebaseFirestore.instance.collection('recipe');
   @override
@@ -28,7 +28,7 @@ class _homeState extends State<home> {
       backgroundColor: Colors.white,
       appBar:buildAppBar(),
       body: buildSingleChildScrollView(),
-      bottomNavigationBar: Buildbottom(pageController! , selectedIndex),
+
 
 
     );;
@@ -116,23 +116,7 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
         Container(
             height:150,
             child:  buildPopularandVegan()),
-        Container(
-          height: 200,
-          child: PageView(
-            physics: BouncingScrollPhysics(),
-            controller: pageController,
-            onPageChanged:  (int index){
-              setState(() {
-                selectedIndex=index;
-              });
-            }        ,
-            children: [
-              dash(),
-              articles(),
-              category()
-            ],
-          ),
-        )
+
       ],
     ),
   ),
