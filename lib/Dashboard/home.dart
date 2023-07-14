@@ -118,14 +118,11 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     } else if (snapshot.hasData) {
-                      String? title = snapshot.data;
-                      return  Text(
-                        title!,
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black,
-                        ),
+                      String? imageUrl = snapshot.data;
+                      return Container(
+                        height: 20,
+                        width: 20,
+                        child: Image.network(imageUrl!),
                       );
                     } else {
                       return Text('No recipe found');

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
 
 class Recipe {
 
@@ -19,12 +18,32 @@ List getRecipes=[];
 
   Future getRecipedocument() async{
 try {
-  CollectionReference collection = FirebaseFirestore.instance.collection('recipe');
-  QuerySnapshot snapshot = await collection.get();
+  CollectionReference collection = FirebaseFirestore.instance.collection("recipe");
 
-  for (QueryDocumentSnapshot recipe in snapshot.docs) {
-    print("in for in loop");
-    int id = recipe.get('id');
+
+
+    // = await collection.doc("x2zMgg3ucIa33j2gAo0L" )
+  QuerySnapshot snapshot = await collection.get();
+  /*
+snapshot.docs.forEach((recipe) {
+  print("in for in loop");
+  int id = recipe["id"];
+  String image_path = recipe["image_path"];
+  String meal_type = recipe["meal_type "];
+  String title = recipe["title"];
+  print(image_path);
+  print(meal_type);
+  print(title);
+  print(id);
+  Recipe recipeObject = Recipe(id, image_path, meal_type, title);
+  print(recipeObject);
+  getRecipes.add(recipeObject);
+});
+*/
+
+  for ( DocumentSnapshot  recipe in snapshot.docs) {
+    recipe.exists? print("in for in loop"):print("errors");
+    int id = recipe.get("id");
     String image_path = recipe.get('image_path');
     String meal_type = recipe.get('meal_type');
     String title = recipe.get('title');
@@ -33,7 +52,6 @@ try {
     print(title);
     print(id);
     Recipe recipeObject = Recipe(id, image_path, meal_type, title);
-    print(recipeObject);
     getRecipes.add(recipeObject);
   }
 }
@@ -50,8 +68,10 @@ catch(e){
       {
         await getRecipedocument();
       }
-    String title= getRecipes[0]. image_path;
-    return title;
+    String title= getRecipes[0].title;
+    Reference storageReference = FirebaseStorage.instance.ref().child(title);
+    String imageurl = await storageReference.getDownloadURL();
+    return imageurl;
     }
 
       }
