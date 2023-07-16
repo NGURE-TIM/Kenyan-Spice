@@ -1,11 +1,8 @@
-import 'package:animated_emoji/animated_emoji.dart';
+
 import 'package:flutter/material.dart';
-import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
+
 import "bottomNavBar.dart";
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
-import 'dashboard_Components.dart';
-import 'dashboardConsts.dart';
 import 'articles.dart';
 import 'categories.dart';
 import 'home.dart';
@@ -23,8 +20,7 @@ static const String id ="/dash";
 class _dashState extends State<dash> {
   int selectedIndex=0;
   PageController? pageController;
-  final CollectionReference recipes =
-  FirebaseFirestore.instance.collection('recipe');
+
   @override
   void initState(){
     super.initState();

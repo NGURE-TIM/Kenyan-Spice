@@ -1,12 +1,11 @@
 import 'package:animated_emoji/animated_emoji.dart';
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
 import 'dashboard_Components.dart';
 import 'dashboardConsts.dart';
 
-
+import 'package:firebase_cached_image/firebase_cached_image.dart';
 
 RecipeList list=  RecipeList();
 
@@ -16,19 +15,14 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
- 
-  final CollectionReference recipes =
-  FirebaseFirestore.instance.collection('recipe');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar:buildAppBar(),
       body: buildSingleChildScrollView(),
-
-
-
-    );;
+    );
   }
 }
 
@@ -108,27 +102,8 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
             height:150,
             child:SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child:
-                FutureBuilder(
-                  future: list.getfirstrecipe(),
-                  builder: (BuildContext context, AsyncSnapshot<String> snapshot)
-                  {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else if (snapshot.hasData) {
-                      String? imageUrl = snapshot.data;
-                      return Container(
-                        height: 20,
-                        width: 20,
-                        child: Image.network(imageUrl!),
-                      );
-                    } else {
-                      return Text('No recipe found');
-                    }
-                  },
-                )
+                child:null
+
 
             )),
         verticalSpacing ,

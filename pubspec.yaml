@@ -51,7 +51,9 @@ dependencies:
   floor: ^1.4.2
   floor_generator: ^1.4.2
   water_drop_nav_bar: ^2.2.0+5
-  firebase_storage: ^11.2.4
+  firebase_storage: ^11.2.5
+  cached_network_image: ^3.2.3
+  firebase_cached_image: ^0.4.4
 
 dev_dependencies:
   flutter_test:
