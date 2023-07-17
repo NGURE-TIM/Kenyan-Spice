@@ -4,7 +4,8 @@ import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
 import 'dashboard_Components.dart';
 import 'dashboardConsts.dart';
-
+import 'package:flutter/material.dart';
+import 'package:east_african_spice/Dashboard/buildtile.dart';
 import 'package:firebase_cached_image/firebase_cached_image.dart';
 
 RecipeList list=  RecipeList();
@@ -102,10 +103,31 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
             height:150,
             child:SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child:null
+                child:ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount:list.getRecipe().length,
+                    itemBuilder: (context, index){
+                      return FutureBuilder(
+                        future: list.getRecipe(),
+                        builder: (BuildContext context, AsyncSnapshot<String> snapshot)
+                        {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          } else if (snapshot.hasData) {
+                            List recipeOjects = snapshot.data as List;
+                            return buildTile(recipeOjects.image_path,recipeOjects.meal_type,recipeOjects.title)
+                          } else {
+                            return Text('No recipe found');
+                          }
+                        },
+                      );
 
-
-            )),
+                    }
+            )
+            )
+            ),
         verticalSpacing ,
         buildRow("Vegan options",AnimatedEmojis.plant ),
         verticalSpacing ,

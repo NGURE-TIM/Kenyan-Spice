@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Recipe {
 int id;
 String image_path;
@@ -32,20 +33,15 @@ catch(e){
 }
     }
 
-    Future<List?> getfirstrecipe ()async{
-
-    if (getRecipes.length==0)
-      {
-        await getRecipedocument();
-      }
-    for ( Recipe myRecipe in getRecipes ){
-
-
+ getRecipe() async{
+        if (getRecipes.length==0)
+        {
+          await getRecipedocument();
     }
+        return getRecipes;
+  }
 
-    return ;
 
-    }
       }
 
 

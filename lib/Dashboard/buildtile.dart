@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-
+/*
 class Tile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -46,4 +46,12 @@ class Tile extends StatelessWidget {
   }
 }
 
+*/
 
+
+
+Widget buildTile(String image_path, String meal_type, String title)
+{
+return
+  ListTile()
+}
