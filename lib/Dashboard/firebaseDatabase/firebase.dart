@@ -28,7 +28,7 @@ try {
     getRecipes.add(recipeObject);
     counter++;
   }
-  getRecipes[counter].title;
+
 }
 catch(e){
   print(e);

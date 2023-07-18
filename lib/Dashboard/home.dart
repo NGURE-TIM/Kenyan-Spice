@@ -99,38 +99,36 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
         buildRow("Popular Recipes",AnimatedEmojis.fire ),
         verticalSpacing,
 
-        Container(
-            height:150,
-            child:FutureBuilder <List<Recipe>>(
-              future: list.getRecipe(),
-              builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot)
-              {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else if (snapshot.hasData) {
-                  List recipeObjects = snapshot.data! as List;
-                  return SizedBox(
-height: 100,
-                    width: 100,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount:recipeObjects.length,
-                        itemBuilder: (context, index){
-                          return buildTile(
-                            recipeObjects[index].meal_type,
-                            recipeObjects[index].title,
-                          );
-                        }
-                    ),
-                  );
-                } else {
-                  return Text('No recipe found');
-                }
-              },
-            )
-            ),
+        FutureBuilder <List<Recipe>>(
+          future: list.getRecipe(),
+          builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot)
+          {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (snapshot.hasData) {
+              List recipeObjects = snapshot.data! as List;
+              print(recipeObjects.length);
+              return SizedBox(
+                height:100,
+                width: 100,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount:recipeObjects.length,
+                    itemBuilder: (context, index){
+                      return buildTile(
+                        recipeObjects[index].meal_type,
+                        recipeObjects[index].title,
+                      );
+                    }
+                ),
+              );
+            } else {
+              return Text('No recipe found');
+            }
+          },
+        ),
         verticalSpacing ,
         buildRow("Vegan options",AnimatedEmojis.plant ),
         verticalSpacing ,
