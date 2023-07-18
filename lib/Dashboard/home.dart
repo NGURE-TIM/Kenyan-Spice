@@ -109,10 +109,10 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
               List recipeObjects = snapshot.data! as List;
-              print(recipeObjects.length);
+
               return SizedBox(
-                height:100,
-                width: 100,
+                height:200,
+                width: 700,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount:recipeObjects.length,
