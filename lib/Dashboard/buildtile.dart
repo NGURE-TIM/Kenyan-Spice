@@ -1,57 +1,41 @@
 import 'package:flutter/material.dart';
-
-/*
-class Tile extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return  FutureBuilder(
-      future: list.getfirstrecipe(),
-      builder: (BuildContext context, AsyncSnapshot<String> snapshot)
-      {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else if (snapshot.hasData) {
-          String? title = snapshot.data;
-          return Container(
-            padding:EdgeInsets.all(12),
-            width: 200,
-            height: 200,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.black,
-            ),
-            child:Column(
-              children: [
-       Container(
-         height: 50,
-           width: 50,
-           child: Image.asset("images/black.png")),
-                Text(
-
-                )
-
-
-
-              ],
-            ) ,
-
-          );
-        } else {
-          return Text('No recipe found');
-        }
-      },
-    );
-  }
-}
-
-*/
-
-
-
-Widget buildTile(String image_path, String meal_type, String title)
+Widget buildTile( String meal_type, String title)
 {
 return
-  ListTile()
+
+  Container(
+    padding:EdgeInsets.all(12),
+  width: 100,
+  height: 100,
+  decoration: BoxDecoration(
+  borderRadius: BorderRadius.circular(12),
+  color: Colors.blue,
+  ),
+  child:Column(
+  children: [
+  Container(
+  height: 100,
+  width: 100,
+  child: Image.asset("images/black.png")),
+    Text(
+      title,
+      style:TextStyle(
+
+          color: Colors.orangeAccent,
+      fontWeight: FontWeight.bold
+
+      )
+      ),
+    Text(
+       meal_type,
+        style:TextStyle(
+            color: Colors.orangeAccent,
+            fontWeight: FontWeight.bold
+
+        ),
+    )
+
+      ],
+    ) ,
+  );
 }

@@ -159,12 +159,8 @@ class _loginState extends State<login> {
                               obscureText ? Icons.visibility_off : Icons
                                   .visibility
                           ),
-                          onPressed: () async {
-                            print(await list.getfirstrecipe());
-
-                            setState(() {
-                              obscureText = !obscureText;
-                            });
+                          onPressed: () {
+                           null;
                           },
                         ),
 
