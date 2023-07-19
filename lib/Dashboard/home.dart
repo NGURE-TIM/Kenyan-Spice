@@ -111,15 +111,18 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
               List recipeObjects = snapshot.data! as List;
 
               return SizedBox(
-                height:200,
-                width: 700,
+                  width: 320,
+                  height: 250,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount:recipeObjects.length,
                     itemBuilder: (context, index){
-                      return buildTile(
-                        recipeObjects[index].meal_type,
-                        recipeObjects[index].title,
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: buildTile(
+                          recipeObjects[index].meal_type,
+                          recipeObjects[index].title,
+                        ),
                       );
                     }
                 ),
