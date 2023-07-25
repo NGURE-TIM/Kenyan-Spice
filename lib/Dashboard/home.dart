@@ -4,19 +4,13 @@ import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
 import 'dashboard_Components.dart';
 import 'dashboardConsts.dart';
-import 'package:flutter/material.dart';
 import 'package:east_african_spice/Dashboard/buildtile.dart';
-import 'package:firebase_cached_image/firebase_cached_image.dart';
-
 RecipeList list=  RecipeList();
-
 class home extends StatefulWidget {
   @override
   State<home> createState() => _homeState();
 }
-
 class _homeState extends State<home> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +20,6 @@ class _homeState extends State<home> {
     );
   }
 }
-
 Widget buildSingleChildScrollView() => SingleChildScrollView(
 
 
@@ -81,19 +74,6 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
           ],
         ),
         verticalSpacing,
-        Row(
-          children: [
-            buildSearchbar(),
-            const SizedBox(
-              width: 10,
-            ),
-            const  IconButton(
-              onPressed: null, icon: Icon(Icons.filter_alt ),
-              iconSize: 30,
-            ),
-
-          ],
-        ),
 
         verticalSpacing,
         buildRow("Popular Recipes",AnimatedEmojis.fire ),
@@ -122,6 +102,7 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
                         child: buildTile(
                           recipeObjects[index].meal_type,
                           recipeObjects[index].title,
+                          recipeObjects[index].image_path
                         ),
                       );
                     }
@@ -156,79 +137,6 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
 
 
 
-
-Container buildSearchbar() {
-  return Container(
-    width: 250,
-    height: 40,
-    child: const TextField(
-        style: TextStyle(
-          color:Colors.white,
-        ),
-        cursorColor: Color(yellowTheme),
-        textAlign: TextAlign.left,
-        onChanged:null,
-        decoration: InputDecoration(
-
-          prefixIcon: Padding(
-              padding: EdgeInsets.only(right:5,left: 10),
-
-              child:IconButton(
-                color: Colors.grey,
-                icon: Icon(
-                    Icons.search
-                ),
-                onPressed: null,
-              )
-
-          ),
-
-          filled: true,
-          fillColor: Colors.white70,
-
-          hintText: "Search recipes",
-
-          hintStyle: TextStyle(
-
-            color: Colors.black,
-
-          ),
-
-          contentPadding: EdgeInsets.symmetric(
-              vertical: 10.0, horizontal: 20.0),
-
-          border:
-
-          OutlineInputBorder(
-
-            borderRadius: BorderRadius.all(Radius.circular(32.0)),
-
-          ),
-
-          enabledBorder: OutlineInputBorder(
-
-            borderSide: BorderSide(
-                color: Color(yellowTheme), width: 1.0),
-
-            borderRadius: BorderRadius.all(Radius.circular(32.0)),
-
-          ),
-
-          focusedBorder: OutlineInputBorder(
-
-            borderSide: BorderSide(
-                color: Color(yellowTheme), width: 2.0),
-
-            borderRadius: BorderRadius.all(Radius.circular(32.0)),
-
-          ),
-
-          // cursorColor: Color,
-
-        )
-    ),
-  );
-}
 
 
 AppBar buildAppBar() => AppBar(

@@ -19,17 +19,15 @@ if(getRecipes.isEmpty){
     QuerySnapshot snapshot = await collection.get();
 
     for (QueryDocumentSnapshot recipe in snapshot.docs) {
-
       print("in for in loop");
       int id = recipe.get('id');
       String image_path = recipe.get('image_path');
       String meal_type = recipe.get('meal_type');
       String title = recipe.get('title');
-      Recipe recipeObject = Recipe(id, image_path, meal_type, title );
+      Recipe recipeObject = Recipe(id, image_path, meal_type, title);
       getRecipes.add(recipeObject);
       print('error first ${getRecipes.length}');
     }
-
   }
   catch(e){
     print(e);

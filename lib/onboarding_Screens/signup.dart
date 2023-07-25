@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:east_african_spice/onboarding_Screens/components/widgets.dart';
 import"package:east_african_spice/onboarding_Screens/login.dart";
@@ -191,7 +190,9 @@ class _signUPState extends State<signUP> {
                     textAlign: TextAlign.center,
                     onChanged: (value){
                      password=value;
+                     print(password);
                     },
+
                     decoration: InputDecoration(
 
 
@@ -241,6 +242,7 @@ class _signUPState extends State<signUP> {
                     )
                 ),
               ),
+
               type_of_Textfield("Re-enter your password"),
               Container(
                 width: 300,
@@ -253,6 +255,7 @@ class _signUPState extends State<signUP> {
                     textAlign: TextAlign.center,
                     onChanged: (value){
                   checkpassword=value;
+                  print(checkpassword);
                     },
                     decoration: InputDecoration(
 
@@ -309,7 +312,7 @@ class _signUPState extends State<signUP> {
               ),
               login_signupButton("Sign up",() async{
 
-                if (password==checkpassword && password.length==8 ){
+                if (password==checkpassword && password.length>=8  ){
                   try{
                     final newUser=await _auth.createUserWithEmailAndPassword(email: email, password: password);
                     User? user = newUser.user;
@@ -327,7 +330,20 @@ class _signUPState extends State<signUP> {
                     }
 
                   }
-                  catch(e){print(e);}
+                  catch(e)
+    {
+    FirebaseAuthException exp =e as FirebaseAuthException ;
+    String? ex = exp.message;
+    showDialog(context: context, builder: (BuildContext context)=>
+    AlertDialog(
+    title: Text("error"),
+    content: Text(ex!),
+    actions: [
+    TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("Ok"))
+    ],
+    ),
+    );
+                  }
                 }
                 else(
 
