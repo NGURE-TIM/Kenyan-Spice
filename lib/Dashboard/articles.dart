@@ -2,102 +2,71 @@
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-
+import 'package:provider/provider.dart';
+import 'dashboard_State management/icon_Select.dart';
   class articles extends StatefulWidget {
     @override
     State<articles> createState() => _articlesState();
   }
 
   class _articlesState extends State<articles> {
-    bool Status1 = false;
-    bool Status2 = false;
-    bool Status3 = false;
+
     @override
     Widget build(BuildContext context) {
       return Scaffold(
 
         backgroundColor: Colors.white,
-        body:SafeArea(
-          child: SingleChildScrollView(
-            child:Column(
-              children: [
-                Container(
-                  decoration:  BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("images/young-pleased-afro-american-cook-chef-uniform-stands-white-wall-looks-wall-isolated-orange-wall.jpg"),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.1),
-                        BlendMode.darken,
+        body:MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context)=>Select())
+          ],
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child:Column(
+                children: [
+                  Container(
+                    decoration:  BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("images/young-pleased-afro-american-cook-chef-uniform-stands-white-wall-looks-wall-isolated-orange-wall.jpg"),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.1),
+                          BlendMode.darken,
+                        ),
                       ),
-                    ),
 
-                    borderRadius: BorderRadius.only( bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20), ),
-                  ),
-                  height: 250,
-                  width: double.infinity,
-                  child:Padding(
-                    padding: const EdgeInsets.all(35.0),
-                    child: Column(
-                      crossAxisAlignment:CrossAxisAlignment.start,
-                      children: [
-                        Text("Find your ",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      shadows: [
-                        Shadow(
-                          color: Colors.grey,
-                          offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
-                          blurRadius: 4, // The blur radius of the shadow
-                        ),
-                      ],
+                      borderRadius: BorderRadius.only( bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20), ),
                     ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text("favourite  ",
-                          style: TextStyle(
-                          fontSize: 15,
-                          color: Color(yellowTheme),
-                            fontWeight: FontWeight.w400,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black45,
-                                offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
-                                blurRadius: 4, // The blur radius of the shadow
-                              ),
-                            ],
-                        ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text("recipes ",
+                    height: 250,
+                    width: double.infinity,
+                    child:Padding(
+                      padding: const EdgeInsets.all(35.0),
+                      child: Column(
+                        crossAxisAlignment:CrossAxisAlignment.start,
+                        children: [
+                          Text("Find your ",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        shadows: [
+                          Shadow(
+                            color: Colors.grey,
+                            offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
+                            blurRadius: 4, // The blur radius of the shadow
+                          ),
+                        ],
+                      ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text("favourite  ",
                             style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.black,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.grey,
-                                  offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
-                                  blurRadius: 4, // The blur radius of the shadow
-                                ),
-                              ],
-                            )
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text("in a Tap! ",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color(yellowTheme),
-                              fontWeight: FontWeight.w900,
+                            fontSize: 15,
+                            color: Color(yellowTheme),
+                              fontWeight: FontWeight.w400,
                               shadows: [
                                 Shadow(
                                   color: Colors.black45,
@@ -105,52 +74,77 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
                                   blurRadius: 4, // The blur radius of the shadow
                                 ),
                               ],
-                            ))
+                          ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text("recipes ",
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.black,
+                                shadows: [
+                                  Shadow(
+                                    color: Colors.grey,
+                                    offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
+                                    blurRadius: 4, // The blur radius of the shadow
+                                  ),
+                                ],
+                              )
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text("in a Tap! ",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color(yellowTheme),
+                                fontWeight: FontWeight.w900,
+                                shadows: [
+                                  Shadow(
+                                    color: Colors.black45,
+                                    offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
+                                    blurRadius: 4, // The blur radius of the shadow
+                                  ),
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
+                  ),
+                     SizedBox(height: 10,),
+                  buildSearchbar(),
+                   SizedBox(
+                    height: 10,
+                  ),
+                  Consumer(
+                  <Select>(
+                  builder:(context,selectProviderModel,child)=> Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        buildSelect(FontAwesomeIcons.bowlRice, "Main meal",selectProviderModel.Status1 ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        buildSelect(FontAwesomeIcons.bowlFood, "One pot" , selectProviderModel.Status2) ,
+                        SizedBox(
+                          width: 5,
+                        ),
+                        buildSelect(FontAwesomeIcons.burger, "Snack", selectProviderModel.Status3 ),
                       ],
                     ),
-                  )
-                ),
-                   SizedBox(height: 10,),
-                buildSearchbar(),
-                 SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    buildSelect(FontAwesomeIcons.bowlRice, "Main meal", (){
-                      setState(() {
-                        Status1 = !Status1;
-                      });
-                    }   , Status1),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    buildSelect(FontAwesomeIcons.bowlFood, "One pot" ,  (){
-      setState(() {
-      Status2 = !Status2;
-      });
-      }  , Status2        ) ,
-                    SizedBox(
-                      width: 5,
-                    ),
-                    buildSelect(FontAwesomeIcons.burger, "Snack", (){
-      setState(() {
-      Status3 = !Status3;
-      });
-      } , Status3 ),
-                  ],
-                ),
+                  ),
 SizedBox(height: 20,),
 
 
-                  ]
-                ),
+                    ]
+                  ),
 
-            ) ,
+              ) ,
 
 
-          ),
+            ),
+        ),
         );
 
     }
@@ -159,9 +153,11 @@ SizedBox(height: 20,),
 
 
 
-    GestureDetector buildSelect(IconData type ,String mealtype,Function()? Tap , bool Status) =>
+    GestureDetector buildSelect(IconData type ,String mealtype, bool Status) =>
         GestureDetector(
-          onTap:Tap,
+          onTap: (){
+
+          },
           child: Container(
             height:40 ,
               width:95 ,

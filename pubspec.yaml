@@ -55,6 +55,7 @@ dependencies:
   cached_network_image: ^3.2.3
   firebase_cached_image: ^0.4.4
   blurrycontainer: ^1.0.2
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
