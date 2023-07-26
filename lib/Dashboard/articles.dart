@@ -117,20 +117,20 @@ import 'dashboard_State management/icon_Select.dart';
                    SizedBox(
                     height: 10,
                   ),
-                  Consumer(
-                  <Select>(
-                  builder:(context,selectProviderModel,child)=> Row(
+                  Consumer<Select>(
+                  builder:(context,selectProviderModel,child)=>
+        Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        buildSelect(FontAwesomeIcons.bowlRice, "Main meal",selectProviderModel.Status1 ),
+                        buildSelect(FontAwesomeIcons.bowlRice, "Main meal",selectProviderModel.Status1 ,selectProviderModel.getStatus() ),
                         SizedBox(
                           width: 12,
                         ),
-                        buildSelect(FontAwesomeIcons.bowlFood, "One pot" , selectProviderModel.Status2) ,
+                        buildSelect(FontAwesomeIcons.bowlFood, "One pot" , selectProviderModel.Status2,selectProviderModel.getStatus()) ,
                         SizedBox(
                           width: 5,
                         ),
-                        buildSelect(FontAwesomeIcons.burger, "Snack", selectProviderModel.Status3 ),
+                        buildSelect(FontAwesomeIcons.burger, "Snack", selectProviderModel.Status3,selectProviderModel.getStatus() ),
                       ],
                     ),
                   ),
@@ -153,11 +153,9 @@ SizedBox(height: 20,),
 
 
 
-    GestureDetector buildSelect(IconData type ,String mealtype, bool Status) =>
+    GestureDetector buildSelect(IconData type ,String mealtype, bool Status , void Function()? onTap) =>
         GestureDetector(
-          onTap: (){
-
-          },
+          onTap: onTap,
           child: Container(
             height:40 ,
               width:95 ,
