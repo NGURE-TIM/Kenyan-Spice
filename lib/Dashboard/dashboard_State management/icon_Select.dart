@@ -9,6 +9,24 @@ class Select extends ChangeNotifier{
 
  getStatus () {
 
+ if( Status1==false)
+   {
+     Status1=true;
+     Status2 = false;
+     Status3 = false;
+   }
+else if (Status2 = false)
+{
+  Status1=false;
+  Status2 = true;
+  Status3 = false;
+}
+ else if (Status3= false)
+ {
+   Status1=false;
+   Status2 = false;
+   Status3 = true;
+ }
   notifyListeners();
  }
 
