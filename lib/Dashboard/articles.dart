@@ -122,15 +122,15 @@ import 'dashboard_State management/icon_Select.dart';
         Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        buildSelect(FontAwesomeIcons.bowlRice, "Main meal",selectProviderModel.Status1 ,selectProviderModel.getStatus() ),
+                        buildSelect(FontAwesomeIcons.bowlRice, "Main meal",selectProviderModel.Status1 ),
                         SizedBox(
                           width: 12,
                         ),
-                        buildSelect(FontAwesomeIcons.bowlFood, "One pot" , selectProviderModel.Status2,selectProviderModel.getStatus()) ,
+                        buildSelect(FontAwesomeIcons.bowlFood, "One pot" , selectProviderModel.Status2) ,
                         SizedBox(
                           width: 5,
                         ),
-                        buildSelect(FontAwesomeIcons.burger, "Snack", selectProviderModel.Status3,selectProviderModel.getStatus() ),
+                        buildSelect(FontAwesomeIcons.burger, "Snack", selectProviderModel.Status3 ),
                       ],
                     ),
                   ),
@@ -153,30 +153,34 @@ SizedBox(height: 20,),
 
 
 
-    GestureDetector buildSelect(IconData type ,String mealtype, bool Status , void Function()? onTap) =>
-        GestureDetector(
-          onTap: onTap,
-          child: Container(
-            height:40 ,
-              width:95 ,
-            decoration:  BoxDecoration(
+    Consumer<Select> buildSelect(IconData type ,String mealtype, bool Status ) =>
+        Consumer<Select>(
+            builder:(context,selectProviderModel,child)=>
+       GestureDetector(
+            onTap: (){
+              selectProviderModel.getStatus();
+              },
+            child: Container(
+              height:40 ,
+                width:95 ,
+              decoration:  BoxDecoration(
 color: Status? Colors.white:Colors.orangeAccent,
-              borderRadius: BorderRadius.circular(90)
-            ),
+                borderRadius: BorderRadius.circular(90)
+              ),
 child:  Row(
   mainAxisAlignment: MainAxisAlignment.center,
   children: [
     FaIcon(type,
-          size: 18,
-          color: Status? Colors.black: Color(0xFF969696),
+            size: 18,
+            color: Status? Colors.black: Color(0xFF969696),
     ),
     SizedBox(width: 4,),
     Text(
-          mealtype,
+            mealtype,
       style: TextStyle(
-        color: Status? Colors.orangeAccent:Colors.black ,
-          fontSize:10,
-          fontWeight: FontWeight.w900,
+          color: Status? Colors.orangeAccent:Colors.black ,
+            fontSize:10,
+            fontWeight: FontWeight.w900,
       ),
     )
   ],
@@ -184,6 +188,7 @@ child:  Row(
 
 
 
+            ),
           ),
         );
     }
