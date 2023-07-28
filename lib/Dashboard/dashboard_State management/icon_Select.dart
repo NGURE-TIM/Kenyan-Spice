@@ -7,45 +7,45 @@ class Select extends ChangeNotifier{
   bool Status2 = false;
   bool Status3 = false;
 
- getStatus () {
+ getStatus (int num) {
 
- if( Status1==true && Status2==false && Status3==false )
+ if(num==2 && Status1==true && Status2==false && Status3==false )
    {
      Status1=false;
      Status2 = true;
      Status3 = false;
 
    }
-else if (Status1==true && Status2==false && Status3==false)
+else if (num==3 &&Status1==true && Status2==false && Status3==false)
 {
   Status1=false;
   Status2 = false;
   Status3 = true;
 
 }
- else if (Status1==false && Status2==true && Status3==false)
+ else if (num==1 && Status1==false && Status2==true && Status3==false)
  {
    Status1=true;
    Status2 = false;
    Status3 = false;
  }
- else if (Status1==false && Status2==true && Status3==false)
+ else if (num==3 && Status1==false && Status2==true && Status3==false)
  {
    Status1=false;
    Status2 = false;
    Status3 = true;
  }
- else if (Status1==false && Status2==false && Status3==true)
+ else if ( num==1 &&  Status1==false && Status2==false && Status3==true)
  {
    Status1=true;
    Status2 = false;
    Status3 = false;
  }
- else if (Status1==false && Status2==false && Status3==true)
+ else if (num==2 && Status1==false && Status2==false && Status3==true)
  {
    Status1=false;
    Status2 = true;
-   Status3 = true;
+   Status3 = false;
  }
 
 
