@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'dashboard_State management/icon_Select.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
+import 'recipe.dart';
 import 'buildTile/gridTile.dart';
 RecipeList list=  RecipeList();
   class articles extends StatefulWidget {
@@ -97,19 +98,27 @@ RecipeList list=  RecipeList();
                         SizedBox(
                           height: 5,
                         ),
-                        Text("in a Tap! ",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color(yellowTheme),
-                              fontWeight: FontWeight.w900,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black45,
-                                  offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
-                                  blurRadius: 4, // The blur radius of the shadow
-                                ),
-                              ],
-                            ))
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => recipe()),
+                            );
+                          },
+                          child: Text("in a Tap! ",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color(yellowTheme),
+                                fontWeight: FontWeight.w900,
+                                shadows: [
+                                  Shadow(
+                                    color: Colors.black45,
+                                    offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
+                                    blurRadius: 4, // The blur radius of the shadow
+                                  ),
+                                ],
+                              )),
+                        )
                       ],
                     ),
                   )

@@ -6,7 +6,12 @@ String image_path;
 String meal_type;
 String title;
 
-Recipe(this.id,this.image_path,this.meal_type,this.title);
+String ingredients;
+String  message;
+String procedure;
+
+
+Recipe(this.id,this.image_path,this.meal_type,this.title,this.ingredients,this.message,this.procedure);
       }
       class RecipeList{
         List<Recipe> getRecipes=[];
@@ -24,10 +29,17 @@ if(getRecipes.isEmpty){
       String image_path = recipe.get('image_path');
       String meal_type = recipe.get('meal_type');
       String title = recipe.get('title');
-      Recipe recipeObject = Recipe(id, image_path, meal_type, title);
+      String ingredients = recipe.get('ingredients');
+      String message = recipe.get('message');
+      String procedure = recipe.get('procedure');
+      print(procedure);
+      Recipe recipeObject = Recipe(id, image_path, meal_type, title, ingredients,message,procedure);
       getRecipes.add(recipeObject);
       print('error first ${getRecipes.length}');
     }
+
+
+
   }
   catch(e){
     print(e);
