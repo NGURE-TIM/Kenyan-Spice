@@ -17,34 +17,15 @@ class recipe extends StatefulWidget {
 }
 
 class _recipeState extends State<recipe> {
-  bool status=false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(child:
     Scaffold(
-      appBar:  AppBar(
-        backgroundColor:Colors.white ,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.grey
-          ),
-          onPressed: () {  },
-        ),
-        actions: [
-          IconButton(
-            color:status?Colors.orangeAccent:Colors.grey,
-            icon: Icon(status?Icons.favorite:Icons.favorite_border_sharp),
-            onPressed: () {
-              setState(() {
-                status=!status;
-              });
-            },
-          ),
-        ],
-      ),
+      backgroundColor:Colors.white,
+
       body:SingleChildScrollView(
+
         child: FutureBuilder <List<Recipe>>(
           future: list.getRecipe(),
           builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot)
@@ -61,7 +42,7 @@ class _recipeState extends State<recipe> {
 
               return Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left:30,right: 30, top : 5,bottom: 15),
+                  padding: const EdgeInsets.only(left:0,right: 0, top : 0,bottom:0),
                   child: Container(
                     child: recipepage( recipeObjects[0].title,
                         recipeObjects[0].image_path,

@@ -6,7 +6,7 @@ String image_path;
 String meal_type;
 String title;
 
-String ingredients;
+List<String> ingredients;
 String  message;
 String procedure;
 
@@ -29,10 +29,12 @@ if(getRecipes.isEmpty){
       String image_path = recipe.get('image_path');
       String meal_type = recipe.get('meal_type');
       String title = recipe.get('title');
-      String ingredients = recipe.get('ingredients');
+      List<dynamic> ingredientsDynamic = recipe.get('ingredients') as List<dynamic>;
+      List<String> ingredients = ingredientsDynamic.map((ingredient) => ingredient.toString()).toList();
+
       String message = recipe.get('message');
       String procedure = recipe.get('procedure');
-      print(procedure);
+      print(ingredients);
       Recipe recipeObject = Recipe(id, image_path, meal_type, title, ingredients,message,procedure);
       getRecipes.add(recipeObject);
       print('error first ${getRecipes.length}');
@@ -45,7 +47,7 @@ if(getRecipes.isEmpty){
     print(e);
   }
 }
-/////////////////////////////////////////add print function to test out length
+
 return getRecipes;
     }
 }
