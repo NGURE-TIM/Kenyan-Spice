@@ -20,6 +20,7 @@ class _recipeState extends State<recipe> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
     return SafeArea(child:
     Scaffold(
       backgroundColor:Colors.white,
@@ -40,16 +41,14 @@ class _recipeState extends State<recipe> {
                  i++;
                }
 
-              return Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left:0,right: 0, top : 0,bottom:0),
-                  child: Container(
-                    child: recipepage( recipeObjects[0].title,
-                        recipeObjects[0].image_path,
-                      recipeObjects[0].ingredients,
-                      recipeObjects[0].message,
-                      recipeObjects[0].procedure,
-                    ),
+              return Padding(
+                padding: const EdgeInsets.only(left:0,right: 0, top : 0,bottom:0),
+                child: Container(
+                  child: recipepage( recipeObjects[0].title,
+                      recipeObjects[0].image_path,
+                    recipeObjects[0].ingredients,
+                    recipeObjects[0].message,
+                    recipeObjects[0].procedure,
                   ),
                 ),
               );
