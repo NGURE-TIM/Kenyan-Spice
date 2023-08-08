@@ -23,9 +23,10 @@ class _recipeState extends State<recipe> {
     final Size screenSize = MediaQuery.of(context).size;
     return SafeArea(child:
     Scaffold(
-      backgroundColor:Colors.white,
 
-      body:SingleChildScrollView(
+backgroundColor: Color(0xFFFCFCFC),
+      body:Container(
+
 
         child: FutureBuilder <List<Recipe>>(
           future: list.getRecipe(),
