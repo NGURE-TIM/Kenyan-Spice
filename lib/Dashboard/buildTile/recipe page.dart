@@ -141,6 +141,17 @@ Widget recipepage(
                                 buildBulletListText(ingredients[1]),
                                 buildBulletListText(ingredients[2]),
                                 buildBulletListText(ingredients[3]),
+                                buildBulletListText(ingredients[4]),
+                                buildBulletListText(ingredients[5]),
+                                buildBulletListText(ingredients[6]),
+                                buildBulletListText(ingredients[7]),
+                                buildBulletListText(ingredients[8]),
+                                buildBulletListText(ingredients[9]),
+                                buildBulletListText(ingredients[10]),
+                                buildBulletListText(ingredients[11]),
+                                buildBulletListText(ingredients[12]),
+              buildBulletListText(ingredients[13]),
+
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -177,6 +188,95 @@ Widget recipepage(
 
                                   ),
                                 ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[1]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[2]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[3]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[4]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[5]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[6]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[7]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[8]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[9]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[10]),
+
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: process(procedure[11]),
+
+                                  ),
+                                ),
+
                               ],
                             ),
                           ),
@@ -200,7 +300,7 @@ Text process(String procedure) {
     procedure,
     style: TextStyle(
       fontSize: 10.0,
-      color: Colors.grey,
+      color: Colors.black,
       fontFamily: 'RobotoMono',
     ),
   );
