@@ -8,7 +8,7 @@ String title;
 
 List<String> ingredients;
 String  message;
-String procedure;
+List<String>  procedure;
 
 
 Recipe(this.id,this.image_path,this.meal_type,this.title,this.ingredients,this.message,this.procedure);
@@ -33,7 +33,10 @@ if(getRecipes.isEmpty){
       List<String> ingredients = ingredientsDynamic.map((ingredient) => ingredient.toString()).toList();
 
       String message = recipe.get('message');
-      String procedure = recipe.get('procedure');
+
+      List<dynamic> procedureDynamic = recipe.get('procedure') as List<dynamic>;
+      List<String> procedure = procedureDynamic.map((procedure) => procedure.toString()).toList();
+
       print(ingredients);
       Recipe recipeObject = Recipe(id, image_path, meal_type, title, ingredients,message,procedure);
       getRecipes.add(recipeObject);

@@ -7,7 +7,7 @@ Widget recipepage(
     String image_path,
     List<String> ingredients,
     String message,
-    String procedure,
+   List<String> procedure,
     ) {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
@@ -173,7 +173,8 @@ Widget recipepage(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Align(
                                     alignment: Alignment.topLeft,
-                                    child: process(procedure),
+                                    child: process(procedure[0]),
+
                                   ),
                                 ),
                               ],
