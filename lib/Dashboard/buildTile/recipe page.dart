@@ -29,16 +29,14 @@ Widget recipepage(
             builder: (BuildContext context, BoxConstraints constraints) {
              return Column(
                 children: [
-                  SizedBox(
-                    height: 30,
-                  ),
+
                   Container(
                     height:MediaQuery.of(context).size.height-450,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(25),
-                        bottomLeft: Radius.circular(25),
+                      //  bottomRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(75),
                       ),
                       image: DecorationImage(
                         image: NetworkImage(convertedUrl),

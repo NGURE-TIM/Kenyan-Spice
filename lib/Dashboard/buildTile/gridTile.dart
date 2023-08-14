@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import'package:east_african_spice/Dashboard/recipe.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 Widget griditem( String meal_type, String title , String image_path)
 {
@@ -17,7 +18,7 @@ Widget griditem( String meal_type, String title , String image_path)
           }
           String convertedUrl = snapshot.data!;
           return
-           Container(
+           Ink(
              height: 400,
              width: 200,
              decoration: BoxDecoration(
@@ -43,13 +44,24 @@ Widget griditem( String meal_type, String title , String image_path)
                SizedBox(
                  height: 100,
                  width: 100,
-                 child: ClipOval(
-                   child: Image.network(
-                   convertedUrl,
-                   fit: BoxFit.cover,
-                   color: Colors.black.withOpacity(0.1),
-                   colorBlendMode: BlendMode.darken,
+                 child: InkWell(
+
+                   highlightColor: Colors.grey.withOpacity(0.4),
+                   splashColor: Colors.orangeAccent,
+                   onTap: (){
+                     Navigator.push(
+                       context,
+                       MaterialPageRoute(builder: (context) => recipe()),
+                     );
+                   },
+                   child: ClipOval(
+                     child: Image.network(
+                     convertedUrl,
+                     fit: BoxFit.cover,
+                     color: Colors.black.withOpacity(0.1),
+                     colorBlendMode: BlendMode.darken,
              ),
+                   ),
                  ),
                ),
                  Text(
