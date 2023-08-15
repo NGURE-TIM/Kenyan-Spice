@@ -3,9 +3,10 @@ import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
 import 'buildTile/recipe page.dart';
 
 RecipeList list=  RecipeList();
-int i=-1;
+
 class recipe extends StatefulWidget {
-  const recipe({super.key});
+  int index;
+  recipe(this.index);
   @override
   State<recipe> createState() => _recipeState();
 }
@@ -14,7 +15,6 @@ class _recipeState extends State<recipe> {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
     return SafeArea(child:
     Scaffold(
 
@@ -32,18 +32,16 @@ backgroundColor: Color(0xFFFCFCFC),
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
               List recipeObjects = snapshot.data! as List;
-               for(Recipe recipes in recipeObjects){
-                 i++;
-               }
 
               return Padding(
                 padding: const EdgeInsets.only(left:0,right: 0, top : 0,bottom:0),
                 child: Container(
-                  child: recipepage( recipeObjects[0].title,
-                      recipeObjects[0].image_path,
-                    recipeObjects[0].ingredients,
-                    recipeObjects[0].message,
-                    recipeObjects[0].procedure,
+
+                  child: recipepage( recipeObjects[widget.index].title,
+                      recipeObjects[widget.index].image_path,
+                    recipeObjects[widget.index].ingredients,
+                    recipeObjects[widget.index].message,
+                    recipeObjects[widget.index].procedure,
                   ),
                 ),
               );
@@ -53,9 +51,6 @@ backgroundColor: Color(0xFFFCFCFC),
             }
           },
         ),
-
-
-
       ),
     )
     );

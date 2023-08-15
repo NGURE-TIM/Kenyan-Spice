@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-
+import 'package:east_african_spice/Dashboard/articles.dart';
 
 Widget recipepage(
     String title,
@@ -54,15 +54,19 @@ Widget recipepage(
                           children: [
                             IconButton(
                               icon: const Icon(Icons.arrow_back_ios,
+                                  size: 15,
                                   color: Colors.white),
-                              onPressed: () {},
+                              onPressed: () {
+
+                                Navigator.pop(context,articles());
+                              },
                             ),
                             Text(
                               title,
                               style: TextStyle(
-                                fontSize: 32.0,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white30,
                                 shadows: [
                                   Shadow(
                                     offset: Offset(2, 2),
@@ -74,7 +78,9 @@ Widget recipepage(
                             ),
                             IconButton(
                               color: Colors.white,
-                              icon: Icon(Icons.favorite),
+                              icon: Icon(Icons.favorite,
+                                size: 15,
+                              ),
                               onPressed: () {
                                 // Implement your favorite button functionality here
                               },
@@ -135,21 +141,7 @@ Widget recipepage(
                                 SizedBox(
                                   height:5,
                                 ),
-                                buildBulletListText(ingredients[0]),
-                                buildBulletListText(ingredients[1]),
-                                buildBulletListText(ingredients[2]),
-                                buildBulletListText(ingredients[3]),
-                                buildBulletListText(ingredients[4]),
-                                buildBulletListText(ingredients[5]),
-                                buildBulletListText(ingredients[6]),
-                                buildBulletListText(ingredients[7]),
-                                buildBulletListText(ingredients[8]),
-                                buildBulletListText(ingredients[9]),
-                                buildBulletListText(ingredients[10]),
-                                buildBulletListText(ingredients[11]),
-                                buildBulletListText(ingredients[12]),
-              buildBulletListText(ingredients[13]),
-
+                                buildBulletListText(ingredients),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -178,102 +170,8 @@ Widget recipepage(
                                 SizedBox(
                                   height:5,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[0]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[1]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[2]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[3]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[4]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[5]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[6]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[7]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[8]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[9]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[10]),
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: process(procedure[11]),
-
-                                  ),
-                                ),
+                                buildprocedure(procedure),
+                              
 
                               ],
                             ),
@@ -293,35 +191,64 @@ Widget recipepage(
   );
 }
 
-Text process(String procedure) {
-  return Text(
-    procedure,
-    style: TextStyle(
-      fontSize: 10.0,
-      color: Colors.black,
-      fontFamily: 'RobotoMono',
+Padding buildprocedure(List<String> procedure) {
+  List<Widget>? procedures=[];
+  for(String p in procedure)
+  {
+    procedures.add(
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        p,
+        style: TextStyle(
+          fontSize: 10.0,
+          color: Colors.black,
+          fontFamily: 'RobotoMono',
+        )
+      ),
+    )
+  );
+  }
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Align(
+      alignment: Alignment.topLeft,
+      child:Column(
+        children: procedures,
+      )
     ),
   );
 }
 
-Widget buildBulletListText(String text) {
+
+
+Widget buildBulletListText(List<String> text) {
+  List<Widget> textwidget=[];
+  for (String text in text){
+    textwidget.add(
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '\u2022', // Unicode for bullet point
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(width: 8),
+          Expanded(
+            child:  Text(
+              text,
+              style: TextStyle(fontSize: 13),
+            ),
+          ),
+        ],
+      ),
+
+    );
+  }
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '\u2022', // Unicode for bullet point
-          style: TextStyle(fontSize: 16),
-        ),
-        SizedBox(width: 8),
-        Expanded(
-          child: Text(
-            text,
-            style: TextStyle(fontSize: 13),
-          ),
-        ),
-      ],
-    ),
+    child:Column(
+      children: textwidget,
+    )
   );
 }

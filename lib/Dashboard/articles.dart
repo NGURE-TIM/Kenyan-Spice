@@ -14,7 +14,6 @@ RecipeList list=  RecipeList();
   }
 
   class _articlesState extends State<articles> {
-
     @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -165,7 +164,7 @@ SizedBox(height: 20,),
                         itemBuilder: (BuildContext ctx, index) {
                         return griditem(recipeObjects[index].meal_type,
                         recipeObjects[index].title,
-                        recipeObjects[index].image_path);
+                        recipeObjects[index].image_path,index);
                         }),
                       ),
                     ),
