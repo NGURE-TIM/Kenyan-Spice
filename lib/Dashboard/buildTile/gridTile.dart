@@ -56,13 +56,16 @@ Widget griditem( String meal_type, String title , String image_path , int index 
                      );
                     
                    },
-                   child: ClipOval(
-                     child: Image.network(
-                     convertedUrl,
-                     fit: BoxFit.cover,
-                     color: Colors.black.withOpacity(0.1),
-                     colorBlendMode: BlendMode.darken,
+                   child: Hero(
+                     tag: "h$index",
+                     child: ClipOval(
+                       child: Image.network(
+                       convertedUrl,
+                       fit: BoxFit.cover,
+                       color: Colors.black.withOpacity(0.1),
+                       colorBlendMode: BlendMode.darken,
              ),
+                     ),
                    ),
                  ),
                ),

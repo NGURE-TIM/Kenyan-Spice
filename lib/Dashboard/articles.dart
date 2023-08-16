@@ -147,7 +147,9 @@ SizedBox(height: 20,),
                       return Text('Error: ${snapshot.error}');
                     } else if (snapshot.hasData) {
                       List recipeObjects = snapshot.data! as List;
-
+                      List filterRecipesByMealType(String mealType) {
+                        return recipeObjects.where((recipe) => recipe.meal_type == mealType).toList();
+                      }
 
                   return Expanded(
                     child: Padding(
@@ -188,15 +190,12 @@ SizedBox(height: 20,),
 
     }
 
-
-
-
-
     Consumer<Select> buildSelect(IconData type ,String mealtype, bool Status , int buttonNUm ) =>
         Consumer<Select>(
             builder:(context,selectProviderModel,child)=>
        GestureDetector(
             onTap: (){
+              List<Recipe> snacksRecipes = recipeo.filterRecipesByMealType('snacks');
               selectProviderModel.getStatus(buttonNUm);
               },
             child: Container(

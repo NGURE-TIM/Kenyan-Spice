@@ -41,7 +41,7 @@ backgroundColor: Color(0xFFFCFCFC),
                       recipeObjects[widget.index].image_path,
                     recipeObjects[widget.index].ingredients,
                     recipeObjects[widget.index].message,
-                    recipeObjects[widget.index].procedure,
+                    recipeObjects[widget.index].procedure,widget.index
                   ),
                 ),
               );

@@ -8,6 +8,7 @@ Widget recipepage(
     List<String> ingredients,
     String message,
    List<String> procedure,
+    int index
     ) {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
@@ -30,64 +31,67 @@ Widget recipepage(
              return Column(
                 children: [
 
-                  Container(
-                    height:MediaQuery.of(context).size.height-450,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                      //  bottomRight: Radius.circular(25),
-                        bottomLeft: Radius.circular(75),
-                      ),
-                      image: DecorationImage(
-                        image: NetworkImage(convertedUrl),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 30,
+                  Hero(
+                    tag: "h$index",
+                    child: Container(
+                      height:MediaQuery.of(context).size.height-450,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                        //  bottomRight: Radius.circular(25),
+                          bottomLeft: Radius.circular(75),
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.arrow_back_ios,
-                                  size: 15,
-                                  color: Colors.white),
-                              onPressed: () {
+                        image: DecorationImage(
+                          image: NetworkImage(convertedUrl),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.arrow_back_ios,
+                                    size: 15,
+                                    color: Colors.white),
+                                onPressed: () {
 
-                                Navigator.pop(context,articles());
-                              },
-                            ),
-                            Text(
-                              title,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white30,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(2, 2),
-                                    color: Colors.grey.withOpacity(0.5),
-                                    blurRadius: 3.0,
-                                  ),
-                                ],
+                                  Navigator.pop(context,articles());
+                                },
                               ),
-                            ),
-                            IconButton(
-                              color: Colors.white,
-                              icon: Icon(Icons.favorite,
-                                size: 15,
+                              Text(
+                                title,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white30,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(2, 2),
+                                      color: Colors.grey.withOpacity(0.5),
+                                      blurRadius: 3.0,
+                                    ),
+                                  ],
+                                ),
                               ),
-                              onPressed: () {
-                                // Implement your favorite button functionality here
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
+                              IconButton(
+                                color: Colors.white,
+                                icon: Icon(Icons.favorite,
+                                  size: 15,
+                                ),
+                                onPressed: () {
+                                  // Implement your favorite button functionality here
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Column(

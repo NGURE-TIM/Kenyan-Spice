@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import "bottomNavBar.dart";
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
 import 'articles.dart';
-import 'categories.dart';
+
 import 'home.dart';
 
 RecipeList list=  RecipeList();
@@ -42,7 +42,7 @@ class _dashState extends State<dash> {
         children: [
           home(),
           articles(),
-          category()
+
         ],
       ),
       bottomNavigationBar: Buildbottom(pageController! , selectedIndex),
