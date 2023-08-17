@@ -35,10 +35,7 @@ class _BuildbottomState extends State<Buildbottom> {
         BarItem(
             filledIcon: Icons.favorite_rounded,
             outlinedIcon: Icons.favorite_border_rounded),
-        BarItem(
-          filledIcon: Icons.email_rounded,
-          outlinedIcon: Icons.email_outlined,
-        ),
+
 
       ],
     );

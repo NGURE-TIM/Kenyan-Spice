@@ -32,7 +32,7 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
       children: [
         verticalSpacing,
         const   Text(
-          "Hello, xxxxxx!",
+          "Hello, welcome to spice !",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w400,
