@@ -55,9 +55,9 @@ class favouriteRecipe {
   favouriteRecipe(this.image_path,this.meal_type,this.title,this.ingredients,this.message,this.procedure);
 }
 class favouriteRecipeList{
-  List<Recipe> getRecipes=[];
+  List<favouriteRecipe> getRecipes=[];
 
-  Future<List<Recipe>> getRecipe() async {
+  Future<List<favouriteRecipe>> getRecipe() async {
     if(getRecipes.isEmpty){
       try {
         CollectionReference collection = FirebaseFirestore.instance.collection('favourites');
@@ -72,7 +72,7 @@ class favouriteRecipeList{
           String message = recipe.get('message');
           List<dynamic> procedureDynamic = recipe.get('procedure') as List<dynamic>;
           List<String> procedure = procedureDynamic.map((procedure) => procedure.toString()).toList();
-          Recipe recipeObject = Recipe(image_path, meal_type, title, ingredients,message,procedure);
+          favouriteRecipe recipeObject = favouriteRecipe(image_path, meal_type, title, ingredients,message,procedure);
           getRecipes.add(recipeObject);
         }
       }
@@ -98,9 +98,9 @@ class veganRecipe {
   veganRecipe(this.image_path,this.meal_type,this.title,this.ingredients,this.message,this.procedure);
 }
 class veganRecipeList{
-  List<Recipe> getRecipes=[];
+  List<veganRecipe> getRecipes=[];
 
-  Future<List<Recipe>> getRecipe() async {
+  Future<List<veganRecipe>> getRecipe() async {
     if(getRecipes.isEmpty){
       try {
         CollectionReference collection = FirebaseFirestore.instance.collection('favourites');
@@ -115,7 +115,7 @@ class veganRecipeList{
           String message = recipe.get('message');
           List<dynamic> procedureDynamic = recipe.get('procedure') as List<dynamic>;
           List<String> procedure = procedureDynamic.map((procedure) => procedure.toString()).toList();
-          Recipe recipeObject = Recipe(image_path, meal_type, title, ingredients,message,procedure);
+          veganRecipe recipeObject = veganRecipe(image_path,meal_type, title, ingredients,message,procedure);
           getRecipes.add(recipeObject);
         }
       }

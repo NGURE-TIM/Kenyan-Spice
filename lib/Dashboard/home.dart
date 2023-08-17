@@ -6,7 +6,8 @@ import 'buildTile/buildtile.dart';
 import 'dashboard_Components.dart';
 import 'dashboardConsts.dart';
 
-RecipeList list=  RecipeList();
+favouriteRecipeList list=favouriteRecipeList();
+veganRecipeList veganlist=veganRecipeList();
 class home extends StatefulWidget {
   @override
   State<home> createState() => _homeState();
@@ -80,9 +81,9 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
         buildRow("Popular Recipes",AnimatedEmojis.fire ),
         verticalSpacing,
 
-        FutureBuilder <List<Recipe>>(
+        FutureBuilder <List<favouriteRecipe>>(
           future: list.getRecipe(),
-          builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot)
+          builder: (BuildContext context, AsyncSnapshot<List<favouriteRecipe>> snapshot)
           {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicator();
@@ -117,17 +118,41 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
         verticalSpacing ,
         buildRow("Vegan options",AnimatedEmojis.plant ),
         verticalSpacing ,
-        Container(
-            height:150,
-            child:  SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child:
-                Row(
-                  children: [
-                  ],
-                )
 
-            )),
+        FutureBuilder <List<veganRecipe>>(
+          future: veganlist.getRecipe(),
+          builder: (BuildContext context, AsyncSnapshot<List<veganRecipe>> snapshot)
+          {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (snapshot.hasData) {
+              List recipeObjects = snapshot.data! as List;
+
+              return SizedBox(
+                width: 320,
+                height: 250,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount:recipeObjects.length,
+                    itemBuilder: (context, index){
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: buildTile(
+                            recipeObjects[index].meal_type,
+                            recipeObjects[index].title,
+                            recipeObjects[index].image_path
+                        ),
+                      );
+                    }
+                ),
+              );
+            } else {
+              return Text('No recipe found');
+            }
+          },
+        ),
 
       ],
     ),
