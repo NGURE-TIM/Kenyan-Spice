@@ -30,50 +30,33 @@ class Welcome extends StatelessWidget {
         decoration:backgroundDecoration ,
          child:Column(
            children: [
+SizedBox(
+  height: 100,
+),
+             Logoimage(400,400),
 
-             Expanded(
 
-                 child:Logoimage(250,250),
-               ),
+             Column(
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               children: [
 
+                 login_signupButton("Get started",(){
+                   Navigator.pushNamed(context, login.id);
+                 }),
+                 SizedBox(height:12),
+                 Row(
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     SizedBox(width:10),
 
-             Expanded(
-               child: Column(
-               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                 children: [
-                   Container(
-                     height:140,
-                   ),
-                   login_signupButton("Get started",(){
-                     Navigator.pushNamed(context, login.id);
-                   }),
+                     Outlined_signupButton("Sign up here !", () {
+                       Navigator.pushNamed(context, signUP.id);
+                     },)
+                   ],
+                 ),
 
-      SizedBox(height:10 ),
-                   Expanded(
-                     child: Row(
-                       crossAxisAlignment: CrossAxisAlignment.center,
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         const Text(
-                           "Don't have an account? ",
-                           style: TextStyle(
-                             color: Colors.white,
-                             fontSize: 10,
-                             fontWeight: FontWeight.bold,
-                           ),),
-                         //  SizedBox(width: 5,),
-                         Outlined_signupButton("Sign up!", () {
-                           Navigator.pushNamed(context, signUP.id);
-                         },)
-                       ],
-                     ),
-                   ),
-
-                   Container(
-                     height: 40,
-                   ),
-                 ],
-               ),
+               ],
              ),
            ],
          ),

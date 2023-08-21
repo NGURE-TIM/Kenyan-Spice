@@ -369,70 +369,70 @@ class _signUPState extends State<signUP> {
                 height: 15,
               ),
               Text("or sign up with ", style: ktype_of_Textfield),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 0, vertical: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+              Container(
+                height: 25,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
 
-                    buildGestureDetector(
-                        "images/google-icon-svgrepo-com.svg", () async{
-                      try{
-                        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-                        final GoogleSignInAuthentication? googleAuth= await googleUser?.authentication;
-                        final AuthCredential credential = GoogleAuthProvider.credential(
-                            accessToken: googleAuth?.accessToken,
-                            idToken:googleAuth?.idToken
-                        );
-                        final UserCredential userCredential = await _auth.signInWithCredential(credential);
-                        final User? user= userCredential.user;
+                  buildGestureDetector(
+                      "images/google-icon-svgrepo-com.svg", () async{
+                    try{
+                      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+                      final GoogleSignInAuthentication? googleAuth= await googleUser?.authentication;
+                      final AuthCredential credential = GoogleAuthProvider.credential(
+                          accessToken: googleAuth?.accessToken,
+                          idToken:googleAuth?.idToken
+                      );
+                      final UserCredential userCredential = await _auth.signInWithCredential(credential);
+                      final User? user= userCredential.user;
 
-                        if(
-                        user!=null
-                        ){
-                          Navigator.pushNamed(context, dash.id);
-                         print("hello") ;
+                      if(
+                      user!=null
+                      ){
+                        Navigator.pushNamed(context, dash.id);
+                       print("hello") ;
 
+                      }
+
+                    }
+
+                        catch(e){
+
+                       print("exception thrown");
                         }
 
+                  }),
+                  Container(
+                    width: 22,
+                  ),
+                  buildGestureDetector(
+                      "images/twitter-svgrepo-com (1).svg", () async{
+                    try{
+                      final twitterLogin = new TwitterLogin(
+                          apiKey: '<your consumer key>',
+                          apiSecretKey:' <your consumer secret>',
+                          redirectURI: '<your_scheme>://'
+                      );
+                      final authResult = await twitterLogin.login();
+                      final twitterAuthCredential = TwitterAuthProvider.credential(
+                        accessToken: authResult.authToken!,
+                        secret: authResult.authTokenSecret!,
+                      );
+                      final UserCredential userCredential =await FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+                      User? user=userCredential.user;
+                      if(user!=null)
+                      {
+                        Navigator.pushNamed(context, dash.id);
+                        print("hello");
                       }
+                    }
+                    catch(e){
 
-                          catch(e){
+                      print("Exception thrown $e");
 
-                         print("exception thrown");
-                          }
-
-                    }),
-                    Container(
-                      width: 22,
-                    ),
-                    buildGestureDetector(
-                        "images/twitter-svgrepo-com (1).svg", () async{
-                      try{
-                        final twitterLogin = new TwitterLogin(
-                            apiKey: '<your consumer key>',
-                            apiSecretKey:' <your consumer secret>',
-                            redirectURI: '<your_scheme>://'
-                        );
-                        final authResult = await twitterLogin.login();
-                        final twitterAuthCredential = TwitterAuthProvider.credential(
-                          accessToken: authResult.authToken!,
-                          secret: authResult.authTokenSecret!,
-                        );
-                        final UserCredential userCredential =await FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
-                        User? user=userCredential.user;
-                        if(user!=null)
-                        {
-                          Navigator.pushNamed(context, dash.id);
-                          print("hello");
-                        }
-                      }
-                      catch(e){
-
-                        print("Exception thrown $e");
-
-                      }
+                    }
 
 
 
@@ -440,58 +440,48 @@ class _signUPState extends State<signUP> {
 
 
 
-                    }),
-                    Container(
-                      width: 22,
-                    ),
-                    buildGestureDetector(
-                        "images/facebook-svgrepo-com.svg", () async{
+                  }),
+                  Container(
+                    width: 22,
+                  ),
+                  buildGestureDetector(
+                      "images/facebook-svgrepo-com.svg", () async{
 
 
-                   try{
-                     final LoginResult loginResult=await FacebookAuth.instance.login();
+                 try{
+                   final LoginResult loginResult=await FacebookAuth.instance.login();
 
-                     final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-                     final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-                     User? user=userCredential.user;
+                   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+                   final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+                   User? user=userCredential.user;
 
-                     if(user!=null)
-                     {
-                       Navigator.pushNamed(context, dash.id);
-                       print("hello");
+                   if(user!=null)
+                   {
+                     Navigator.pushNamed(context, dash.id);
+                     print("hello");
+                   }
+
+                 }
+                     catch(e){
+
+                   print("Exception thrown $e");
+
                      }
 
-                   }
-                       catch(e){
-
-                     print("Exception thrown $e");
-
-                       }
-
-                    }),
-                  ],
-                ),
+                  }),
+                ],
               ),
               Container(
-                height: 5,
+                height: 15,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Already have an account? ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),),
-                  //  SizedBox(width: 5,),
-
-
-                  Outlined_signupButton("Sign in", () {
+                  Text("Have an account ? ", style: ktype_of_Textfield),
+                  Outlined_signupButton("Login Here!", () {
                     Navigator.pushNamed(context, login.id);
-                  },)
+                  },),
                 ],
               ),
             ],

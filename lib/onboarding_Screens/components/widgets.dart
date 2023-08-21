@@ -36,21 +36,22 @@ class Outlined_signupButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(onPressed:onPress//sign up
-      ,
+    return OutlinedButton(
+      onPressed:onPress,
+
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        minimumSize: Size(5, 20),
-        side: BorderSide.none, // set the width of the button's border
+        minimumSize: Size(7, 50),
+      // set the width of the button's border
       ),
       child:Text(
         text,
         style: TextStyle(
           color:Color(yellowTheme),
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
+          fontSize:19,
+          fontWeight: FontWeight.w100,
         ),),
 
     );
@@ -64,7 +65,7 @@ class Logoimage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'images/black.png',
+      'images/cooking_1_-removebg-preview.png',
       height: height,
       width:width ,
       fit: BoxFit.cover,

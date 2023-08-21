@@ -138,46 +138,57 @@ RecipeList list=  RecipeList();
                   ),
                 ),
 SizedBox(height: 20,),
-                FutureBuilder <List<Recipe>>(
-                  future: list.getRecipe(),
-                  builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot)
-                  {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else if (snapshot.hasData) {
-                      List recipeObjects = snapshot.data! as List;
-                  return Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left:30,right: 30, top : 5,bottom: 15),
-                      child: Container(
-                        child: GridView.builder(
-                        physics: BouncingScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 2/2.5,
-                        crossAxisSpacing: 5,
-                        mainAxisSpacing: 10),
-                        itemCount: recipeObjects.length,
-                        itemBuilder: (BuildContext ctx, index) {
-                        return griditem(recipeObjects[index].meal_type,
-                        recipeObjects[index].title,
-                        recipeObjects[index].image_path,index);
-                        }),
-                      ),
-                    ),
-                  );
+  Consumer<Select>(
+                builder:(context,selectProviderModel,child)=>
+                    FutureBuilder <List<Recipe>>(
+                      future: list.getRecipe(),
+                      builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot)
+                      {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (snapshot.hasData) {
+                          List recipeNotation = snapshot.data!;
+                          print(recipeNotation);
+                          List filteredrecipe=[];
+                          /*
+                          int index=-1;
+                          for(Recipe filter  in  recipeNotation ) {
+                           index++;
+                           List filtered = filter.where((recipe) =>
+                           recipe.meal_type == 'snack').toList();
+                           filteredrecipe.add(filtered);
+                         }
+                          */
+                          return Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left:30,right: 30, top : 5,bottom: 15),
+                              child: Container(
+                                child: GridView.builder(
+                                    physics: BouncingScrollPhysics(),
+                                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 200,
+                                        childAspectRatio: 2/2.5,
+                                        crossAxisSpacing: 5,
+                                        mainAxisSpacing: 10),
+                                    itemCount: recipeNotation.length,
+                                    itemBuilder: (BuildContext ctx, index) {
+                                      return griditem(recipeNotation[index].meal_type,
+                                          recipeNotation[index].title,
+                                          recipeNotation[index].image_path,index);
+                                    }),
+                              ),
+                            ),
+                          );
 
-                    } else {
-                      return Text('No recipe found');
-                    }
-                  },
+                        } else {
+                          return Text('No recipe found');
+                        }
+                      },
+                    )
                 ),
-
-
-
-                  ]
+              ]
                 ) ,
 
 
@@ -193,6 +204,7 @@ SizedBox(height: 20,),
        GestureDetector(
             onTap: (){
               selectProviderModel.getStatus(buttonNUm);
+            //  selectProviderModel.buildRecipegrid(mealtype);
               },
             child: Container(
               height:40 ,

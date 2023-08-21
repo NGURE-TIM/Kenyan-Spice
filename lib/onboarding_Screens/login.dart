@@ -54,14 +54,14 @@ class _loginState extends State<login> {
           width: screenSize.width,
           height: screenSize.height,
           decoration: loginBackgroundDecoration,
-          child: SingleChildScrollView(
+          child:SingleChildScrollView(
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
                 Container(
-                  child: Logoimage(200, 200),
+                  child: Logoimage(250, 250),
                   // margin: EdgeInsets.only(bottom: 5.0),
                 ),
                 type_of_Textfield("Email"),
@@ -76,7 +76,6 @@ class _loginState extends State<login> {
                       cursorColor: Color(yellowTheme),
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
-
                       onChanged: (value) {
                         email = value;
                       },
@@ -142,7 +141,7 @@ class _loginState extends State<login> {
                         color: Colors.white,
                       ),
                       cursorColor: Color(yellowTheme),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.right,
 
                       onChanged: (value) {
                         password = value;
@@ -151,8 +150,7 @@ class _loginState extends State<login> {
                       decoration: InputDecoration(
 
                         suffixIcon: IconButton(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 0, vertical: 8),
+                          padding: EdgeInsets.symmetric(horizontal:9, vertical: 8),
                           icon: Icon(
                               size: 20,
                               color: Color(yellowTheme),
@@ -160,7 +158,9 @@ class _loginState extends State<login> {
                                   .visibility
                           ),
                           onPressed: () {
-                           null;
+                            setState(() {
+                              obscureText = !obscureText;
+                            });
                           },
                         ),
 
@@ -238,7 +238,25 @@ class _loginState extends State<login> {
 
                       ),
                       Container(width: 1,),
-                      Outlined_signupButton("Forgot password ?", () {},),
+          OutlinedButton(
+          onPressed:null,
+
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            minimumSize: Size(7, 50),
+            // set the width of the button's border
+          ),
+          child:Text(
+            "Forgot password ?",
+            style: TextStyle(
+              color:Color(yellowTheme),
+              fontSize:11,
+              fontWeight: FontWeight.w200,
+            ),),
+
+        )
                     ],
                   ),
                 ),
@@ -282,49 +300,49 @@ class _loginState extends State<login> {
                   height: 15,
                 ),
                 Text("or log in with ", style: ktype_of_Textfield),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 0, vertical: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                SizedBox(
+                  height:25,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
 
-                      buildGestureDetector(
-                          "images/google-icon-svgrepo-com.svg", () async {
-                        Future<UserCredential> signInWithGoogle() async {
-                          // Trigger the authentication flow
-                          final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+                    buildGestureDetector(
+                        "images/google-icon-svgrepo-com.svg", () async {
+                      Future<UserCredential> signInWithGoogle() async {
+                        // Trigger the authentication flow
+                        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-                          // Obtain the auth details from the request
-                          final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+                        // Obtain the auth details from the request
+                        final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-                          // Create a new credential
-                          final credential = GoogleAuthProvider.credential(
-                            accessToken: googleAuth?.accessToken,
-                            idToken: googleAuth?.idToken,
-                          );
+                        // Create a new credential
+                        final credential = GoogleAuthProvider.credential(
+                          accessToken: googleAuth?.accessToken,
+                          idToken: googleAuth?.idToken,
+                        );
 
-                          // Once signed in, return the UserCredential
-                          return await FirebaseAuth.instance.signInWithCredential(credential);
+                        // Once signed in, return the UserCredential
+                        return await FirebaseAuth.instance.signInWithCredential(credential);
 
-                        }
+                      }
 
-                        signInWithGoogle() .then ((userCredential) {
-                          Navigator.pushNamed(context, dash.id);
-                          print("Sign-in successful");
-                        }).catchError((error) {
-                          print("Sign-in failed: $error");
-                        });
+                      signInWithGoogle() .then ((userCredential) {
+                        Navigator.pushNamed(context, dash.id);
+                        print("Sign-in successful");
+                      }).catchError((error) {
+                        print("Sign-in failed: $error");
+                      });
 
 
                }),
 
 
-                      Container(
-                        width: 22,
-                      ),
-                      buildGestureDetector(
-                          "images/twitter-svgrepo-com (1).svg", () async{
+                    Container(
+                      width: 22,
+                    ),
+                    buildGestureDetector(
+                        "images/twitter-svgrepo-com (1).svg", () async{
 try{
   final twitterLogin = new TwitterLogin(
       apiKey: '<your consumer key>',
@@ -344,23 +362,23 @@ try{
     print("hello");
   }
 }
-                        catch(e){
+                      catch(e){
 
-                        print("Exception thrown $e");
+                      print("Exception thrown $e");
 
-                        }
+                      }
 
-                      }),
-                      Container(
-                        width: 22,
-                      ),
-                      buildGestureDetector(
-                          "images/facebook-svgrepo-com.svg", () {
+                    }),
+                    Container(
+                      width: 22,
+                    ),
+                    buildGestureDetector(
+                        "images/facebook-svgrepo-com.svg", () {
      Future<UserCredential> signInWithFacebook() async{
        final LoginResult loginResult= await FacebookAuth.instance.login();
        final OAuthCredential facebookAuthCredential= FacebookAuthProvider.credential(loginResult.accessToken!.token);
        return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-     } 
+     }
 
      signInWithFacebook().then((UserCredential){
        Navigator.pushNamed(context, dash.id);
@@ -371,35 +389,23 @@ try{
 
 
 
-                      }),
-                    ],
-                  ),
+                    }),
+                  ],
                 ),
-
-                SizedBox(height: 10),
-
+                SizedBox(
+                  height:5,
+                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Don't have an account? ",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),),
-                    //  SizedBox(width: 5,),
-
-
-                    Outlined_signupButton("Sign up!", () {
+                    Text("No account ? ", style: ktype_of_Textfield),
+                    Outlined_signupButton("Sign up Here!", () {
                       Navigator.pushNamed(context, signUP.id);
-                    },)
+                    },),
                   ],
                 ),
-                Container(
-                  height: 20,
-                ),
+
 
               ],
             ),
