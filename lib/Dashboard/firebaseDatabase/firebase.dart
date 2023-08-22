@@ -60,9 +60,8 @@ class favouriteRecipeList{
   List<favouriteRecipe> getRecipes=[];
 
   Future<List<favouriteRecipe>> getRecipe() async {
-    print('semaje');
     if(getRecipes.isEmpty){
-      print("g");
+
       try {
         CollectionReference collection = FirebaseFirestore.instance.collection('favourites');
         QuerySnapshot snapshot = await collection.get();

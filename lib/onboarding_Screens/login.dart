@@ -280,6 +280,7 @@ class _loginState extends State<login> {
                   if(e.code=='user-not-found'||e.code=="wrong-password"){
                     showDialog(context: context, builder: (BuildContext context){
                       return AlertDialog(
+                        backgroundColor: Colors.transparent,
                         title: Text("Error"),
                         content: Text("Wrong credentials!"),
                         actions: [
