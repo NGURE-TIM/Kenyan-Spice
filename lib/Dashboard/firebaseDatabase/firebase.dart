@@ -22,7 +22,7 @@ if(_getRecipes.isEmpty){
     QuerySnapshot snapshot = await collection.get();
 
     for (QueryDocumentSnapshot recipe in snapshot.docs) {
-print("xoxo");
+
       int id = recipe.get('id');
       String image_path = recipe.get('image_path');
       String meal_type = recipe.get('meal_type');
@@ -33,7 +33,7 @@ print("xoxo");
       List<dynamic> procedureDynamic = recipe.get('procedure') as List<dynamic>;
       List<String> procedure = procedureDynamic.map((procedure) => procedure.toString()).toList();
       Recipe recipeObject = Recipe(id, image_path, meal_type, title, ingredients,message,procedure);
-      _getRecipes.add(recipeObject );
+      _getRecipes.add(recipeObject);
     }
   }
   catch(e){

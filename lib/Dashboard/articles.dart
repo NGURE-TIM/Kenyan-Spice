@@ -65,20 +65,19 @@ RecipeList list=  RecipeList();
                         SizedBox(
                           height: 5,
                         ),
-                        Text("favourite  ",
-                          style: TextStyle(
-                          fontSize: 15,
-                          color: Color(yellowTheme),
-                            fontWeight: FontWeight.w400,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black45,
-                                offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
-                                blurRadius: 4, // The blur radius of the shadow
-                              ),
-                            ],
-                        ),
-                        ),
+                        Text("favourite ",
+                            style: TextStyle(
+                              fontSize: 23,
+                              color: Color(yellowTheme),
+                              fontWeight: FontWeight.w900,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black45,
+                                  offset: Offset(2, 2), // Horizontal and vertical offset of the shadow
+                                  blurRadius: 4, // The blur radius of the shadow
+                                ),
+                              ],
+                            )),
                         SizedBox(
                           height: 5,
                         ),
@@ -100,7 +99,7 @@ RecipeList list=  RecipeList();
                         ),
                         Text("in a Tap! ",
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize:32,
                               color: Color(yellowTheme),
                               fontWeight: FontWeight.w900,
                               shadows: [
@@ -121,69 +120,69 @@ RecipeList list=  RecipeList();
         Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      buildSelect(FontAwesomeIcons.bowlRice, "Main meal",selectProviderModel.Status1 , 1),
+                      buildSelect(FontAwesomeIcons.bowlRice, "main meal",selectProviderModel.Status1 , 1),
                       SizedBox(
                         width: 12,
                       ),
-                      buildSelect(FontAwesomeIcons.bowlFood, "One pot" , selectProviderModel.Status2 ,2 ) ,
+                      buildSelect(FontAwesomeIcons.bowlFood, "one pot" , selectProviderModel.Status2 ,2 ) ,
                       SizedBox(
                         width: 5,
                       ),
-                      buildSelect(FontAwesomeIcons.burger, "Snack", selectProviderModel.Status3 , 3 ),
+                      buildSelect(FontAwesomeIcons.burger, "snack", selectProviderModel.Status3 , 3 ),
                     ],
                   ),
                 ),
-SizedBox(height: 20,),
-  Consumer<Select>(
-                builder:(context,selectProviderModel,child)=>
-                    FutureBuilder <List<Recipe>>(
-                      future: list.getRecipe(),
-                      builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot)
-                      {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else if (snapshot.hasData) {
-                          List recipeNotation = snapshot.data!;
-                          print(recipeNotation);
-                          List filteredrecipe=[];
-                          /*
-                          int index=-1;
-                          for(Recipe filter  in  recipeNotation ) {
-                           index++;
-                           List filtered = filter.where((recipe) =>
-                           recipe.meal_type == 'snack').toList();
-                           filteredrecipe.add(filtered);
-                         }
-                          */
-                          return Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left:30,right: 30, top : 5,bottom: 15),
-                              child: Container(
-                                child: GridView.builder(
-                                    physics: BouncingScrollPhysics(),
-                                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                                        maxCrossAxisExtent: 200,
-                                        childAspectRatio: 2/2.5,
-                                        crossAxisSpacing: 5,
-                                        mainAxisSpacing: 10),
-                                    itemCount: recipeNotation.length,
-                                    itemBuilder: (BuildContext ctx, index) {
-                                      return griditem(recipeNotation[index].meal_type,
-                                          recipeNotation[index].title,
-                                          recipeNotation[index].image_path,index);
-                                    }),
-                              ),
-                            ),
-                          );
+      Consumer<Select>(
+      builder:(context,selectProviderModel,child)=> FutureBuilder <List<Recipe>>(
+        future: list.getRecipe(),
+        builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot)
+        {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+        return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+        return Text('Error: ${snapshot.error}');
+        } else if (snapshot.hasData) {
+        List recipeNotation = snapshot.data!;
+        List filtered = [];
+        for (Recipe x in recipeNotation)
+        {
+        if(x.meal_type==selectProviderModel.selectedMealType)
+        {
+        filtered.add(x);
+        }
+        }
 
-                        } else {
-                          return Text('No recipe found');
-                        }
-                      },
-                    )
-                ),
+        return Expanded(
+        child: Padding(
+        padding: const EdgeInsets.only(left:30,right: 30, top : 5,bottom: 15),
+        child: Container(
+        child: GridView.builder(
+        physics: BouncingScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
+        childAspectRatio: 2/2.5,
+        crossAxisSpacing: 5,
+        mainAxisSpacing: 10),
+        itemCount: recipeNotation.length,
+        itemBuilder: (BuildContext ctx, index) {
+        return
+                        griditem(recipeNotation[index].meal_type,
+                            recipeNotation[index].title,
+                            recipeNotation[index].image_path,index);
+
+        }),
+        ),
+        ),
+        );
+
+        } else {
+        return Text('No recipe found');
+        }
+        },
+        ),
+      ),
+
+SizedBox(height: 20,),
               ]
                 ) ,
 
@@ -197,41 +196,44 @@ SizedBox(height: 20,),
    buildSelect(IconData type ,String mealtype, bool Status , int buttonNUm ) =>
         Consumer<Select>(
             builder:(context,selectProviderModel,child)=>
-       GestureDetector(
-            onTap: (){
-              selectProviderModel.getStatus(buttonNUm);
-            //  selectProviderModel.buildRecipegrid(mealtype);
-              },
-            child: Container(
-              height:40 ,
-                width:95 ,
-              decoration:  BoxDecoration(
+       Column(
+         children: [
+           GestureDetector(
+                onTap: (){
+                  selectProviderModel.getStatus(buttonNUm);
+                  selectProviderModel.buildGrid(mealtype);
+                  },
+                child: Container(
+                  height:40 ,
+                    width:95 ,
+                  decoration:  BoxDecoration(
 color: Status? Colors.white:Colors.orangeAccent,
-                borderRadius: BorderRadius.circular(90)
-              ),
+                    borderRadius: BorderRadius.circular(90)
+                  ),
 child:  Row(
   mainAxisAlignment: MainAxisAlignment.center,
   children: [
     FaIcon(type,
-            size: 18,
-            color: Status? Colors.black: Colors.white60,
+                size: 18,
+                color: Status? Colors.black: Colors.white60,
     ),
     SizedBox(width: 4,),
     Text(
-            mealtype,
+                mealtype,
       style: TextStyle(
-          color: Status? Colors.orangeAccent:Colors.black ,
-            fontSize:10,
-            fontWeight: FontWeight.w900,
+              color: Status? Colors.orangeAccent:Colors.black ,
+                fontSize:10,
+                fontWeight: FontWeight.w900,
       ),
     )
   ],
 ),
 
+                ),
+              ),
 
-
-            ),
-          ),
+         ],
+       ),
         );
     }
 
