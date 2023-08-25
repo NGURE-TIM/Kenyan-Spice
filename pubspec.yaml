@@ -56,6 +56,7 @@ dependencies:
   firebase_cached_image: ^0.4.4
   blurrycontainer: ^1.0.2
   provider: ^6.0.5
+  flutter_zoom_drawer: ^3.1.1
 
 dev_dependencies:
   flutter_test:

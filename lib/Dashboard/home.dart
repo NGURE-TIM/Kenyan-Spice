@@ -17,7 +17,8 @@ class _homeState extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar:buildAppBar(),
+      appBar:buildAppBar( context),
+      drawer:buildDrawer(context),
       body: buildSingleChildScrollView(),
     );
   }
@@ -79,7 +80,7 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
 SizedBox(
   width: 70,
 ),
-buildSearchbar(),
+/*buildSearchbar(),*/
         verticalSpacing,
         buildRow("Popular Recipes",AnimatedEmojis.fire ),
         verticalSpacing,
@@ -171,7 +172,7 @@ buildSearchbar(),
 
 
 
-AppBar buildAppBar() => AppBar(
+AppBar buildAppBar(BuildContext context) => AppBar(
   backgroundColor:Colors.white ,
   elevation: 0,
   leading: IconButton(
@@ -181,15 +182,37 @@ AppBar buildAppBar() => AppBar(
 
 
     ), onPressed: () {
-    //pull down a drawer
+    Scaffold.of(context).openDrawer();
   },
 
   ),
 
 );
 
+Drawer buildDrawer(BuildContext context) {
+  return Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        // Add items to your drawer here
+        ListTile(
+          title: Text('Item 1'),
+          onTap: () {
+            // Handle item 1 click
+          },
+        ),
+        ListTile(
+          title: Text('Item 2'),
+          onTap: () {
+            // Handle item 2 click
+          },
+        ),
+        // Add more items as needed
+      ],
+    ),
+  );
+}
 
-/**/
 
 
 

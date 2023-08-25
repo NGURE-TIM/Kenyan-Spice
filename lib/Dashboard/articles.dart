@@ -151,7 +151,7 @@ RecipeList list=  RecipeList();
         filtered.add(x);
         }
         }
-
+print(filtered);
         return Expanded(
         child: Padding(
         padding: const EdgeInsets.only(left:30,right: 30, top : 5,bottom: 15),
@@ -163,12 +163,12 @@ RecipeList list=  RecipeList();
         childAspectRatio: 2/2.5,
         crossAxisSpacing: 5,
         mainAxisSpacing: 10),
-        itemCount: recipeNotation.length,
+        itemCount:filtered.length,
         itemBuilder: (BuildContext ctx, index) {
         return
-                        griditem(recipeNotation[index].meal_type,
-                            recipeNotation[index].title,
-                            recipeNotation[index].image_path,index);
+                        griditem(filtered[index].meal_type,
+                            filtered[index].title,
+                            filtered[index].image_path,index);
 
         }),
         ),
