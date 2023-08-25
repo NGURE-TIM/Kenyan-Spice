@@ -1,4 +1,5 @@
 import 'package:animated_emoji/animated_emoji.dart';
+import 'package:east_african_spice/Dashboard/recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:east_african_spice/onboarding_Screens/constants/constants.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
@@ -77,7 +78,7 @@ Widget buildSingleChildScrollView() => SingleChildScrollView(
           ],
         ),
         verticalSpacing,
-SizedBox(
+const SizedBox(
   width: 70,
 ),
 /*buildSearchbar(),*/
@@ -94,23 +95,22 @@ SizedBox(
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
-              List recipeObjects = snapshot.data! as List;
+              List favouriteObjects = snapshot.data! as List;
 
               return SizedBox(
                   width: 320,
                   height: 250,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount:recipeObjects.length,
+                    itemCount:favouriteObjects.length,
                     itemBuilder: (context, index){
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: buildTile(
-                          recipeObjects[index].meal_type,
-                          recipeObjects[index].title,
-                          recipeObjects[index].image_path,
-                          index
-
+                          favouriteObjects[index].meal_type,
+                          favouriteObjects[index].title,
+                          favouriteObjects[index].image_path,
+                          index,favouriteObjects
                         ),
                       );
                     }
@@ -134,22 +134,22 @@ SizedBox(
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
-              List recipeObjects = snapshot.data! as List;
+              List veganObjects = snapshot.data! as List;
 
               return SizedBox(
                 width: 320,
                 height: 250,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount:recipeObjects.length,
+                    itemCount:veganObjects.length,
                     itemBuilder: (context, index){
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: buildTile(
-                            recipeObjects[index].meal_type,
-                            recipeObjects[index].title,
-                            recipeObjects[index].image_path,
-                          index
+                          veganObjects[index].meal_type,
+                          veganObjects[index].title,
+                          veganObjects[index].image_path,
+                          index ,veganObjects
                         ),
                       );
                     }
