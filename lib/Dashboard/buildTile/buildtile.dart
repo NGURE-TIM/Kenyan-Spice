@@ -20,6 +20,7 @@ return
     return
       GestureDetector(
         onTap:(){
+
           if (type=='favouriteObjects')
           {
             Navigator.push(
@@ -28,13 +29,13 @@ return
             );
           }
          else{
-
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => vegan(index)),
+            );
           }
 
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => vegan(index)),
-          );
+
         },
         child: Container(
           height: 100,
