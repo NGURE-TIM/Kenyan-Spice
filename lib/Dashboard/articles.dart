@@ -7,7 +7,10 @@ import 'dashboard_State management/icon_Select.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
 
 import 'buildTile/gridTile.dart';
+
 RecipeList list=  RecipeList();
+
+
   class articles extends StatefulWidget {
     @override
     State<articles> createState() => _articlesState();
@@ -15,6 +18,14 @@ RecipeList list=  RecipeList();
 
   class _articlesState extends State<articles> {
     @override
+    void initState() {
+      super.initState();
+      final selectProviderModel = Provider.of<Select>(context);
+      selectProviderModel.getStatus(1);
+      selectProviderModel.buildGrid("one pot");
+    }
+
+
     Widget build(BuildContext context) {
       return Scaffold(
 
@@ -151,7 +162,6 @@ RecipeList list=  RecipeList();
         filtered.add(x);
         }
         }
-print(filtered);
         return Expanded(
         child: Padding(
         padding: const EdgeInsets.only(left:30,right: 30, top : 5,bottom: 15),
