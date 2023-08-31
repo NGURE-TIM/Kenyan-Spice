@@ -10,6 +10,7 @@ import 'buildTile/gridTile.dart';
 
 RecipeList list=  RecipeList();
 
+bool status = false;
 
   class articles extends StatefulWidget {
     @override
@@ -20,12 +21,14 @@ RecipeList list=  RecipeList();
     @override
     void initState() {
       super.initState();
-      final selectProviderModel = Provider.of<Select>(context);
-      selectProviderModel.getStatus(1);
-      selectProviderModel.buildGrid("one pot");
+      try {
+        final selectProviderModel = Provider.of<Select>(context);
+        selectProviderModel.getStatus(1);
+        selectProviderModel.buildGrid("one pot");
+      } catch (e) {
+        print("Error in initState: $e");
+      }
     }
-
-
     Widget build(BuildContext context) {
       return Scaffold(
 
@@ -140,9 +143,12 @@ RecipeList list=  RecipeList();
                         width: 5,
                       ),
                       buildSelect(FontAwesomeIcons.burger, "snack", selectProviderModel.Status3 , 3 ),
+
                     ],
                   ),
+
                 ),
+
       Consumer<Select>(
       builder:(context,selectProviderModel,child)=> FutureBuilder <List<Recipe>>(
         future: list.getRecipe(),
@@ -210,8 +216,8 @@ SizedBox(height: 20,),
          children: [
            GestureDetector(
                 onTap: (){
-                  selectProviderModel.getStatus(buttonNUm);
-                  selectProviderModel.buildGrid(mealtype);
+                    selectProviderModel.getStatus(buttonNUm);
+                    selectProviderModel.buildGrid(mealtype);
                   },
                 child: Container(
                   height:40 ,

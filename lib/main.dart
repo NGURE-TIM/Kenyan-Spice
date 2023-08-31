@@ -7,7 +7,7 @@ import"package:east_african_spice/onboarding_Screens/login.dart";
 
 
 void main() async{
-
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
