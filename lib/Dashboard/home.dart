@@ -96,7 +96,7 @@ const SizedBox(
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
               List favouriteObjects = snapshot.data! as List;
-
+String i ='favouriteObjects';
               return SizedBox(
                   width: 320,
                   height: 250,
@@ -110,7 +110,7 @@ const SizedBox(
                           favouriteObjects[index].meal_type,
                           favouriteObjects[index].title,
                           favouriteObjects[index].image_path,
-                          index,favouriteObjects
+                          index,i
                         ),
                       );
                     }
@@ -135,7 +135,7 @@ const SizedBox(
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
               List veganObjects = snapshot.data! as List;
-
+              String i ='veganObjects';
               return SizedBox(
                 width: 320,
                 height: 250,
@@ -149,7 +149,7 @@ const SizedBox(
                           veganObjects[index].meal_type,
                           veganObjects[index].title,
                           veganObjects[index].image_path,
-                          index ,veganObjects
+                          index ,i
                         ),
                       );
                     }
@@ -198,13 +198,13 @@ Drawer buildDrawer(BuildContext context) {
         ListTile(
           title: Text('Item 1'),
           onTap: () {
-            // Handle item 1 click
+
           },
         ),
         ListTile(
           title: Text('Item 2'),
           onTap: () {
-            // Handle item 2 click
+
           },
         ),
         // Add more items as needed

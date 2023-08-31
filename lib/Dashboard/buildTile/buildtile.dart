@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import'package:east_african_spice/Dashboard/recipe.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-Widget buildTile( String meal_type, String title , String image_path , int index , List type)
+Widget buildTile( String meal_type, String title , String image_path , int index , String type)
 {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
@@ -20,7 +20,7 @@ return
     return
       GestureDetector(
         onTap:(){
-
+print (type);
           if (type=='favouriteObjects')
           {
             Navigator.push(
