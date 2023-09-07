@@ -82,7 +82,6 @@ class _loginState extends State<login> {
 
                       decoration: InputDecoration(
 
-
                         filled: true,
 
                         fillColor: Colors.grey[900]?.withOpacity(0.5),
@@ -235,7 +234,6 @@ class _loginState extends State<login> {
                       Text(
                         "Remember me ?",
                         style: ktype_of_Textfield,
-
                       ),
                       Container(width: 1,),
           OutlinedButton(
@@ -262,16 +260,11 @@ class _loginState extends State<login> {
                 ),
 
                 login_signupButton("Login", () async{
-
-
                   try{
                     final UserCredential? user= await _auth.signInWithEmailAndPassword(email: email, password: password);
-
                     User? signedUser=user?.user;
                     if (signedUser!= null){
                       Navigator.pushNamed(context, dash.id);
-                      print("hello");
-                      //navigate
                     }
 
                   }on FirebaseAuthException
@@ -290,9 +283,6 @@ class _loginState extends State<login> {
                     }
                     );
                   }
-
-
-                    print(e);
                   }
 
 
@@ -322,7 +312,6 @@ class _loginState extends State<login> {
                           accessToken: googleAuth?.accessToken,
                           idToken: googleAuth?.idToken,
                         );
-
                         // Once signed in, return the UserCredential
                         return await FirebaseAuth.instance.signInWithCredential(credential);
 
@@ -330,9 +319,9 @@ class _loginState extends State<login> {
 
                       signInWithGoogle() .then ((userCredential) {
                         Navigator.pushNamed(context, dash.id);
-                        print("Sign-in successful");
+
                       }).catchError((error) {
-                        print("Sign-in failed: $error");
+
                       });
 
 

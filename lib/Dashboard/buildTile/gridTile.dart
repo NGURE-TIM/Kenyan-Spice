@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import'package:east_african_spice/Dashboard/recipe.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
-Widget griditem( String meal_type, String title , String image_path , int index )
+Widget griditem( String meal_type, String title , String image_path , int index ,List filter )
 {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
@@ -52,7 +52,7 @@ Widget griditem( String meal_type, String title , String image_path , int index 
                    onTap: (){
                      Navigator.push(
                        context,
-                       MaterialPageRoute(builder: (context) => recipe(index)),
+                       MaterialPageRoute(builder: (context) => recipe(index, filter)),
                      );
                     
                    },

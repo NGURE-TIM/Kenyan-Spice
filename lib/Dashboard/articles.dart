@@ -7,11 +7,7 @@ import 'dashboard_State management/icon_Select.dart';
 import 'package:east_african_spice/Dashboard/firebaseDatabase/firebase.dart';
 
 import 'buildTile/gridTile.dart';
-
 RecipeList list=  RecipeList();
-
-bool status = false;
-
   class articles extends StatefulWidget {
     @override
     State<articles> createState() => _articlesState();
@@ -19,16 +15,6 @@ bool status = false;
 
   class _articlesState extends State<articles> {
     @override
-    void initState() {
-      super.initState();
-      try {
-        final selectProviderModel = Provider.of<Select>(context);
-        selectProviderModel.getStatus(1);
-        selectProviderModel.buildGrid("one pot");
-      } catch (e) {
-        print("Error in initState: $e");
-      }
-    }
     Widget build(BuildContext context) {
       return Scaffold(
 
@@ -143,12 +129,9 @@ bool status = false;
                         width: 5,
                       ),
                       buildSelect(FontAwesomeIcons.burger, "snack", selectProviderModel.Status3 , 3 ),
-
                     ],
                   ),
-
                 ),
-
       Consumer<Select>(
       builder:(context,selectProviderModel,child)=> FutureBuilder <List<Recipe>>(
         future: list.getRecipe(),
@@ -161,6 +144,7 @@ bool status = false;
         } else if (snapshot.hasData) {
         List recipeNotation = snapshot.data!;
         List filtered = [];
+        print(selectProviderModel.selectedMealType);
         for (Recipe x in recipeNotation)
         {
         if(x.meal_type==selectProviderModel.selectedMealType)
@@ -168,6 +152,7 @@ bool status = false;
         filtered.add(x);
         }
         }
+
         return Expanded(
         child: Padding(
         padding: const EdgeInsets.only(left:30,right: 30, top : 5,bottom: 15),
@@ -179,12 +164,12 @@ bool status = false;
         childAspectRatio: 2/2.5,
         crossAxisSpacing: 5,
         mainAxisSpacing: 10),
-        itemCount:filtered.length,
+        itemCount:    filtered.length,
         itemBuilder: (BuildContext ctx, index) {
         return
                         griditem(filtered[index].meal_type,
                             filtered[index].title,
-                            filtered[index].image_path,index);
+                            filtered[index].image_path,index,filtered);
 
         }),
         ),
@@ -216,8 +201,8 @@ SizedBox(height: 20,),
          children: [
            GestureDetector(
                 onTap: (){
-                    selectProviderModel.getStatus(buttonNUm);
-                    selectProviderModel.buildGrid(mealtype);
+                  selectProviderModel.getStatus(buttonNUm);
+                  selectProviderModel.buildGrid(mealtype);
                   },
                 child: Container(
                   height:40 ,
